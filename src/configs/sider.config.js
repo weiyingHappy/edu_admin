@@ -31,11 +31,37 @@ module.exports = {
         },
       ],
     },
+    {
+      id: '7',
+      name: '班级管理',
+      icon: 'solution',
+      sub: [
+        {
+          id: '7_1',
+          name: '班级列表',
+          route: '/classes/list/1',
+        }
+      ],
+    },
+    {
+      id: '8',
+      name: '学员管理',
+      icon: 'team',
+      sub: [
+        {
+          id: '8_1',
+          name: '学员列表',
+          route: '/student/list/1',
+        }
+      ],
+    },
   ],
 
   openkeys: {
     order: { key: '3', sub: '3_1', name: '订单' },
     member: { key: '6', sub: '6_1', name: '成员' },
     role: { key: '6', sub: '6_2', name: '角色' },
+    classes: { key: '7', sub: '7_1', name: '班级' },
+    student: { key: '8', sub: '8_1', name: '学员' }
   },
 }

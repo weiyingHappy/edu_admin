@@ -29,5 +29,11 @@ module.exports = {
       lazy: true,
       cus: 'Admin',
     },
+    classes: {
+      model:'classes',
+    },
+    student: {
+      model:'student'
+    }
   },
 }
