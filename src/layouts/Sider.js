@@ -37,6 +37,7 @@ class Sider extends React.PureComponent {
           // 通过检验，渲染菜单
           if (item.sub && item.sub.length > 0) {
             // let t_menu =
+            //不需要权限或者（需要权限但登录的账号有该权限）
             const sub = item.sub.filter((subItem) => {
               return subItem.fid === null || subItem.fid == undefined || this.props.user.funcs.includes(subItem.fid)
             })
