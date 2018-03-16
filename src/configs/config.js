@@ -7,7 +7,7 @@ module.exports = {
   apiPrefix: { // 不同环境api地址前缀
     production: 'http://www.cooke100.com/api/',
     testing: 'http://test.lianwuyun.cn/newbuy_api/',
-    development: 'http://192.168.31.161/link/',
+    development: 'http://127.0.0.1/edu/api/',
   },
   domain: { // 不同环境本项目访问地址
     production: 'http://www.cooke100.com/admin/',

@@ -13,9 +13,19 @@
 */
 module.exports = {
   modelRoute: {
-    order: {
-      model: 'order',
+    user: {
+      model: 'user',
+      folder: 'user',
       noadd: true,
+      lazy: true,
+      cus: 'UserManage',
+    },
+    school: {
+      model: 'school',
+      folder: 'user',
+      noadd: true,
+      lazy: true,
+      cus: 'UserManage',
     },
     member: {
       model: 'member',
