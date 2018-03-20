@@ -1,15 +1,19 @@
 import React from 'react'
 import { connect } from 'dva'
+import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
-import { DataTable, AuthButtonAdd } from '../../components/General'
+import { DataTable, AuthButtonAdd , SAButton,SearchSelect,
+  ExportButton,
+  SearchInput} from '../../components/General'
 
 function RoleList({ dispatch, history, common, app }) {
 
   if (!app.init || !app.user.funcs.includes('2')) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
   }
-
+  const { search } = common
+  console.log(search,common)
   const columns = [
     {
       title: '编号',
@@ -40,9 +44,63 @@ function RoleList({ dispatch, history, common, app }) {
       },
     },
   ]
-
+  const status = [
+    {
+      value: '1',
+      name: '老师',
+    },
+    {
+      value: '2',
+      name: '学生',
+    },
+    {
+      value: '3',
+      name: '家长',
+    },
+    {
+      value: '4',
+      name: '游客',
+    },
+  ]
   return (
     <div>
+      <Mcard>
+        <Row>
+          <Col span={12}>
+            <SearchInput
+              lable="姓名"
+              value={search.order_no}
+              bindName="order_no"
+            />
+            <SearchInput
+              lable="邮箱"
+              value={search.order_no}
+              bindName="order_no"
+            />
+          </Col>
+          <Col span={12}>
+            <SearchInput
+              lable="账号"
+              value={search.order_no}
+              bindName="order_no"
+            />
+           <SearchSelect
+              lable="角色"
+              options={status}
+              value={search.status}
+              bindName="status"
+            />
+          </Col>
+         <Col>
+            <SAButton
+              dispatch={dispatch}
+              model={app.router.codeModel}
+              search={search}
+            />
+            <ExportButton marginLeft={40} state={common} />
+          </Col>
+        </Row>
+      </Mcard>
       <Mcard >
         <AuthButtonAdd authId="102" history={history} />
         <DataTable columns={columns} model={common} rowKey="id" />

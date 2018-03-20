@@ -22,10 +22,12 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {
+      console.log('setup')
       dispatch({ type: 'query' })
     },
 
     setupHistory({ dispatch, history }) {
+      console.log('setuphistory')
       history.listen((location) => {
         const routers = analyzePath(location.pathname)
         if (!routers) {
@@ -60,6 +62,7 @@ export default {
 
   effects: {
     * query({ payload }, { call, put, select }) {
+      console.log('query')
       const data = yield call(loginInfo, payload)
       const { locationPathname } = yield select(_ => _.app)
       if (filterData(data)) {

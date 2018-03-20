@@ -5,6 +5,7 @@ import { connect } from 'dva'
 import cs from './index.less'
 
 function SearchInput({ dispatch, router, lable, bindName, value, nocolon }) {
+
   return (
     <div className={cs.searchItem}>
       <span className={cs.lable}>{lable}{nocolon || '：'}</span>
@@ -12,10 +13,11 @@ function SearchInput({ dispatch, router, lable, bindName, value, nocolon }) {
         <Input
           value={value}
           onChange={(e) => {
+            console.log('input',router,e.target.value)
             const payload = {}
             payload[bindName] = e.target.value
             dispatch({
-              type: `${router.model}/changeSearch`,
+              type: `${router.codeModel}/changeSearch`,
               payload: { ...payload },
             })
           }}

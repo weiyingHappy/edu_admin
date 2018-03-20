@@ -1,6 +1,12 @@
 module.exports = {
   menus: [
     {
+      id: '1',
+      name: '账户管理',
+      icon: 'shopping-cart',
+      route: '/role/list/1'
+    },
+    {
       id: '3',
       name: '订单管理',
       icon: 'shopping-cart',
@@ -23,12 +29,12 @@ module.exports = {
           route: '/member/list/1',
           fid: '1'
         },
-        {
-          id: '6_2',
-          name: '角色管理',
-          route: '/role/list/1',
-          fid: '2'
-        },
+        // {
+        //   id: '6_2',
+        //   name: '角色管理',
+        //   route: '/role/list/1',
+        //   fid: '2'
+        // },
       ],
     },
     {
@@ -60,7 +66,7 @@ module.exports = {
   openkeys: {
     order: { key: '3', sub: '3_1', name: '订单' },
     member: { key: '6', sub: '6_1', name: '成员' },
-    role: { key: '6', sub: '6_2', name: '角色' },
+    role: { key: '1', name: '角色' },
     classes: { key: '7', sub: '7_1', name: '班级' },
     student: { key: '8', sub: '8_1', name: '学员' }
   },
