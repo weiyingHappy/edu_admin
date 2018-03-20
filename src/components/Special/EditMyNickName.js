@@ -1,9 +1,9 @@
 import React from 'react'
 import { Icon, Spin, Input } from 'antd'
 import { connect } from 'dva'
-import styles from './index.less'
+import styles from '../General/Editables/index.less'
 
-class EditableInput extends React.PureComponent {
+class EditMyNickName extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,29 +23,26 @@ class EditableInput extends React.PureComponent {
       this.setState({ edit: false })
       return
     }
-    const { dispatch, bindName, router } = this.props
+    const { dispatch } = this.props
     const payload = {}
-    payload[bindName] = this.state.nowValue
+    payload.name = this.state.nowValue
     dispatch({
-      type: `${router.codeModel}/edit`,
-      payload: { ...payload },
-      action: 'edit',
-      didAction: {
-        type: 0,
-        cb: () => {
-          this.setState({ edit: false, initValue: this.state.nowValue })
-        },
+      type: `app/componentRequest`,
+      uri: 'Admin/changeMyNickName',
+      data: { name: this.state.nowValue },
+      callback: (data) => {
+        this.setState({ edit: false, initValue: this.state.nowValue })
       },
     })
   }
 
   render() {
-    const { router, loading, title, noedit, nocolon, textarea } = this.props
+    const { loading, title, noedit, nocolon, textarea } = this.props
     if (this.state.edit) {
       return (
         <div className={styles.signleCenterRow}>
           <p>{title}{nocolon || '：'}</p>
-          <Spin spinning={loading.effects[`${router.codeModel}/edit`] === true}>
+          <Spin spinning={loading.effects['app/componentRequest'] === true}>
             <p className={styles.input}>
               {
                 textarea ?
@@ -98,8 +95,8 @@ class EditableInput extends React.PureComponent {
   }
 }
 
-function mapStateToProps({ app, loading }) {
-  return { router: app.router, loading }
+function mapStateToProps({ loading }) {
+  return { loading }
 }
 
-export default connect(mapStateToProps)(EditableInput)
+export default connect(mapStateToProps)(EditMyNickName)

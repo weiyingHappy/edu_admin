@@ -2,8 +2,10 @@ import React from 'react'
 import { Input, Button, message } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle } from '../../layouts'
+import { EditMyNickName } from '../../components/Special'
+import { EditableInput } from '../../components/General'
 
-class My extends React.PureComponent {
+class My extends React.Component {
   state = {
     edit: false,
     oldpwd: null,
@@ -54,9 +56,12 @@ class My extends React.PureComponent {
     return (
       <PageTitle nobread noback title="个人信息">
         <Mcard>
-          <p>名称：{user.name}</p>
+          <EditMyNickName title="昵称" value={user.name} noedit />
+          <EditableInput title="电话" value={user.phone} noedit />
+          <EditableInput title="角色" value={user.role ? user.role.name : ''} noedit />
+          {/* <p>昵称：{user.name}</p>
           <p>电话：{user.phone}</p>
-          <p>角色：{user.role ? user.role.name : ''}</p>
+          <p>角色：{user.role ? user.role.name : ''}</p> */}
         </Mcard>
         <Mcard title="修改密码">
           <div style={{ marginBottom: 16, width: '30%' }}>
