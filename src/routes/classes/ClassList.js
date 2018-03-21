@@ -4,30 +4,32 @@ import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
 import { DataTable, AuthButtonAdd } from '../../components/General'
 
-function ClassesList({ dispatch, history, common, app }) {
+function ClassList({ dispatch, history, common, app }) {
 
-  if (!app.init || !app.user.funcs.includes('1')) {
+  if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
   }
 
   const columns = [
     {
-      title: '编号1',
+      title: '班级名称',
+      dataIndex: 'class_name',
+    },
+    {
+      title: '学校',
+      dataIndex: 'school_name',
+    },
+    {
+      title: '账号',
       dataIndex: 'id',
     },
     {
-      title: '名称',
-      dataIndex: 'name',
+      title: '创建时间',
+      dataIndex: 'create_time',
     },
     {
-      title: '电话',
-      dataIndex: 'phone',
-    },
-    {
-      title: '角色',
-      render(record) {
-        return record.role.name
-      },
+      title: '班级人数',
+      dataIndex: 'persons',
     },
     {
       title: '操作',
@@ -57,4 +59,4 @@ function mapStateToProps({ app, common }) {
   return { common, app }
 }
 
-export default connect(mapStateToProps)(ClassesList)
+export default connect(mapStateToProps)(ClassList)

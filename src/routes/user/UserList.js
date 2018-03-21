@@ -1,30 +1,35 @@
 import React from 'react'
 import { connect } from 'dva'
+import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
-import { DataTable, AuthButtonAdd } from '../../components/General'
-import { covertUserType } from '../../utils/convert'
+import { DataTable, AuthButtonAdd,SAButton,SearchSelect,
+  ExportButton,
+  SearchInput } from '../../components/General'
+import { covertUserType , userType } from '../../utils/convert'
 
 function UserList({ dispatch, history, common, app }) {
-
+  const { search } = common
   const columns = [
-    {
-      title: '账号',
-      dataIndex: 'userID',
-    },
     {
       title: '姓名',
       dataIndex: 'name',
     },
     {
-      title: '类型',
-      render(record) {
-        return covertUserType(record.role_id)
-      },
+      title: '账号',
+      dataIndex: 'userID',
     },
     {
-      title: '是否购买评测',
-      dataIndex: 'buy_profile',
+      title: '联系方式',
+      render: (r) => (
+        r.phone ? r.phone : r.email
+      )
+    },
+    {
+      title: '类型',
+      render(record) {
+        return covertUserType(record.roles_id)
+      },
     },
     {
       title: '操作',
@@ -42,6 +47,41 @@ function UserList({ dispatch, history, common, app }) {
 
   return (
     <div>
+       <Mcard>
+        <Row>
+          <Col span={12}>
+            <SearchInput
+              lable="姓名"
+              value={search.name}
+              bindName="name"
+            />
+            <SearchInput
+              lable="邮箱"
+              value={search.email}
+              bindName="email"
+            />
+          </Col>
+          <Col span={12}>
+            <SearchInput
+              lable="账号"
+              value={search.userID}
+              bindName="userID"
+            />
+           <SearchSelect
+              lable="角色"
+              options={userType}
+              value={search.roles_id}
+              bindName="roles_id"
+            />
+             <SAButton
+              dispatch={dispatch}
+              model={app.router.codeModel}
+              search={search}
+            />
+            <ExportButton marginLeft={40} state={common} />
+          </Col>
+        </Row>
+      </Mcard>
       <Mcard >
         <AuthButtonAdd authId="101" history={history} />
         <DataTable columns={columns} model={common} rowKey="id" />

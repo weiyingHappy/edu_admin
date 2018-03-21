@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Input, Select } from 'antd'
+import { Form, Input } from 'antd'
 import { connect } from 'dva'
 import { FAButton } from '../../components/General'
+import { AdminFuncsAdd } from '../../components/Special'
 import { Mcard, PageTitle } from '../../layouts'
 
 const FormItem = Form.Item
@@ -40,23 +41,16 @@ class RoleAdd extends React.PureComponent {
       })
     }
 
-    const status = [
-      {
-        value: '1',
-        name: '优势测评',
-      },
-      {
-        value: '2',
-        name: '职业测评',
-      },
+    const handleFuncChange = (e) => {
+      this.setState({ funcs: e })
+    }
 
-    ]
     return (
-      <PageTitle router={router} title="新增账户">
+      <PageTitle router={router} title="添加角色">
         <Mcard>
           <Form onSubmit={handleSubmit}>
 
-            <FormItem {...formItemLayout} label="姓名">
+            <FormItem {...formItemLayout} label="角色名称">
               {getFieldDecorator('name', {
                 rules: [
                   { required: true, message: '请填入角色名称' },
@@ -66,7 +60,7 @@ class RoleAdd extends React.PureComponent {
               )}
             </FormItem>
 
-            <FormItem {...formItemLayout} label="手机号">
+            <FormItem {...formItemLayout} label="角色编号">
               {getFieldDecorator('code', {
                 rules: [
                   { required: true, message: '请填入角色编号' },
@@ -76,18 +70,8 @@ class RoleAdd extends React.PureComponent {
               )}
             </FormItem>
 
-            <FormItem {...formItemLayout} label="购买项目">
-              {getFieldDecorator('code', {
-                rules: [
-                  { required: true, message: '购买项目' },
-                ],
-              })(
-                <Select>
-                  {status.map(item=>(
-                    <Select.Option value={item.value}>{item.name}</Select.Option>
-                  ))}
-                </Select>
-              )}
+            <FormItem {...formItemLayout} label="角色权限">
+              <AdminFuncsAdd onChange={handleFuncChange} />
             </FormItem>
 
             <FormItem {...tailformItemLayout}>

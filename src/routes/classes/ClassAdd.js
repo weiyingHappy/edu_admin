@@ -6,7 +6,7 @@ import { AdminRoleSelectAdd } from '../../components/Special'
 import { Mcard, PageTitle } from '../../layouts'
 
 const FormItem = Form.Item
-class ClassesAdd extends React.PureComponent {
+class ClassAdd extends React.PureComponent {
   state = {
     role_id: null,
   }
@@ -93,4 +93,4 @@ function mapStateToProps({ loading, app }) {
   return { loading, app }
 }
 
-export default connect(mapStateToProps)(Form.create()(ClassesAdd))
+export default connect(mapStateToProps)(Form.create()(ClassAdd))

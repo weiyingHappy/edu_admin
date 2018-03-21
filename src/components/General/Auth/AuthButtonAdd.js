@@ -4,7 +4,7 @@ import { Button } from 'antd'
 
 function AuthButtonAdd({ history, authId, app }) {
 
-  if (app.init && app.user.funcs.includes(authId)) {
+  if (app.init) {
     return (
       <Button
         icon="plus"

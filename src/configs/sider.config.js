@@ -5,17 +5,23 @@ module.exports = {
       name: '学员管理',
       icon: 'contacts',
       sub: [
-        {
-          id: '1_1',
-          name: '学员列表',
-          route: '/user/list/1',
-        },
+        // {
+        //   id: '1_1',
+        //   name: '学员列表',
+        //   route: '/user/list/1',
+        // },
         {
           id: '1_2',
           name: '学校列表',
           route: '/school/list/1',
         },
       ],
+    },
+    {
+      id: '2',
+      name: '账户管理',
+      icon: 'contacts',
+      route: '/user/list/1'
     },
     {
       id: '6',
@@ -26,39 +32,25 @@ module.exports = {
           id: '6_1',
           name: '成员管理',
           route: '/member/list/1',
-          fid: '1'
         },
-        // {
-        //   id: '6_2',
-        //   name: '角色管理',
-        //   route: '/role/list/1',
-        //   fid: '2'
-        // },
+        {
+          id: '6_2',
+          name: '角色管理',
+          route: '/role/list/1',
+        },
       ],
     },
     {
       id: '7',
       name: '班级管理',
       icon: 'solution',
-      sub: [
-        {
-          id: '7_1',
-          name: '班级列表',
-          route: '/classes/list/1',
-        }
-      ],
+      route: '/class/list/1'
     },
     {
       id: '8',
       name: '学员管理',
       icon: 'team',
-      sub: [
-        {
-          id: '8_1',
-          name: '学员列表',
-          route: '/student/list/1',
-        }
-      ],
+      route: '/student/list/1'
     },
   ],
 

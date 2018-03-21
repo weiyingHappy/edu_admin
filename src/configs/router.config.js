@@ -16,7 +16,6 @@ module.exports = {
     user: {
       model: 'user',
       folder: 'user',
-      noadd: true,
       lazy: true,
       cus: 'UserManage',
     },
@@ -39,11 +38,16 @@ module.exports = {
       lazy: true,
       cus: 'Admin',
     },
-    classes: {
-      model:'classes',
+    class: {
+      model: 'class',
+      folder: 'classes',
+      lazy: true,
+      cus: 'ClassManage'
     },
     student: {
-      model:'student'
+      model: 'student',
+      lazy: true,
+      cus: 'StudentManage'
     }
   },
 }
