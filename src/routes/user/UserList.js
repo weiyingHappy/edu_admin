@@ -3,10 +3,12 @@ import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
-import { DataTable, AuthButtonAdd,SAButton,SearchSelect,
+import {
+  DataTable, AuthButtonAdd, SAButton, SearchSelect,
   ExportButton,
-  SearchInput } from '../../components/General'
-import { covertUserType , userType } from '../../utils/convert'
+  SearchInput
+} from '../../components/General'
+import { covertUserType, userType } from '../../utils/convert'
 
 function UserList({ dispatch, history, common, app }) {
   const { search } = common
@@ -47,7 +49,7 @@ function UserList({ dispatch, history, common, app }) {
 
   return (
     <div>
-       <Mcard>
+      <Mcard>
         <Row>
           <Col span={12}>
             <SearchInput
@@ -60,6 +62,17 @@ function UserList({ dispatch, history, common, app }) {
               value={search.email}
               bindName="email"
             />
+            <SearchInput
+              lable="账号"
+              value={search.userID}
+              bindName="userID"
+            />
+            <SearchInput
+              lable="班级名称"
+              value={search.class_name}
+              bindName="class_name"
+            />
+
           </Col>
           <Col span={12}>
             <SearchInput
@@ -67,18 +80,27 @@ function UserList({ dispatch, history, common, app }) {
               value={search.userID}
               bindName="userID"
             />
-           <SearchSelect
+            <SearchSelect
               lable="角色"
               options={userType}
               value={search.roles_id}
               bindName="roles_id"
             />
-             <SAButton
+             <SearchInput
+              lable="学校"
+              value={search.school_name}
+              bindName="school_name"
+            />
+            <SearchInput
+              lable="班级编号"
+              value={search.class_id}
+              bindName="class_id"
+            />
+            <SAButton
               dispatch={dispatch}
               model={app.router.codeModel}
               search={search}
             />
-            <ExportButton marginLeft={40} state={common} />
           </Col>
         </Row>
       </Mcard>

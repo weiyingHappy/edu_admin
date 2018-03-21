@@ -20,6 +20,7 @@ class SelfDataTable extends React.PureComponent {
 
   selfRequest(page) {
     const { url, dispatch, params } = this.props
+    console.log(url,params)
     let newParams = params
     if (!newParams) { newParams = {} }
     if (!newParams.page) { newParams.page = page || this.state.nowPage }
@@ -59,9 +60,9 @@ function mapStateToProps({ app, loading }) {
 }
 
 SelfDataTable.propTypes = {
-  columns: PropTypes.object, //要显示的列内容
+  columns: PropTypes.array, //要显示的列内容
   url: PropTypes.string, //要请求的地址
-  params: PropTypes.string //每次查询需要的额外参数
+  params: PropTypes.object //每次查询需要的额外参数
 }
 
 export default connect(mapStateToProps)(SelfDataTable)

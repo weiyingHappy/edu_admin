@@ -11,7 +11,7 @@ function SearchSelect({ dispatch, router, lable, bindName, options, value, nocol
       <span className={cs.lable}>{lable}{nocolon || '：'}</span>
       <span className={cs.input}>
         <Select className={cs.select}
-          value={value || '-1'}
+          value={value || '全部'}
           onChange={(val) => {
             const payload = {}
             payload[bindName] = val

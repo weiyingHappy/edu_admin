@@ -13,10 +13,6 @@ export function covertUserType(type) {
 
 export const userType = [
   {
-    value: '-1',
-    name: ''
-  },
-  {
     value: '1',
     name: '游客',
   },

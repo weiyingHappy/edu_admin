@@ -3,7 +3,7 @@ import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
-import { DataTable, AuthButtonAdd, SearchSelect,SearchInput, SAButton } from '../../components/General'
+import { DataTable, SearchInput, SAButton } from '../../components/General'
 
 function StudentList({ dispatch, history, common, app }) {
 
@@ -13,15 +13,27 @@ function StudentList({ dispatch, history, common, app }) {
 
   const columns = [
     {
-      title: '编号12',
-      dataIndex: 'id',
+      title: '账号',
+      dataIndex: 'userID',
     },
     {
-      title: '名称',
+      title: '姓名',
       dataIndex: 'name',
     },
     {
-      title: '电话',
+      title: '班级名称',
+      dataIndex: 'class_name',
+    },
+    {
+      title: '班级编号',
+      dataIndex: 'class_id',
+    },
+    {
+      title: '学校',
+      dataIndex: 'school_name',
+    },
+    {
+      title: '手机号',
       dataIndex: 'phone',
     },
     {
@@ -29,7 +41,10 @@ function StudentList({ dispatch, history, common, app }) {
       render(record) {
         return (
           <div className={cs.tableAction}>
-            <span onClick={() => { history.push(`/${app.router.model}/detail/${record.id}`) }} >
+            {/* <span onClick={() => { history.push(`/${app.router.model}/detail/${record.id}`) }} >
+              查看详情
+            </span> */}
+            <span onClick={() => { history.push(`/user/detail/${record.id}`) }} >
               查看详情
             </span>
           </div>
@@ -58,6 +73,11 @@ function StudentList({ dispatch, history, common, app }) {
               value={search.phone}
               bindName="phone"
             />
+             <SearchInput
+              lable="学校"
+              value={search.school_name}
+              bindName="school_name"
+            />
           </Col>
           <Col span={12}>
             <SearchInput
@@ -84,7 +104,6 @@ function StudentList({ dispatch, history, common, app }) {
         </Row>
       </Mcard>
       <Mcard >
-        <AuthButtonAdd authId="101" history={history} />
         <DataTable columns={columns} model={common} rowKey="id" />
       </Mcard>
     </div>

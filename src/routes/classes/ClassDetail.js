@@ -1,8 +1,8 @@
 import React from 'react'
-import { Row, Col,Table } from 'antd'
+import { Row, Col } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
-
+import { SelfDataTable } from '../../components/General'
 function ClassDetail({ common, app, loading }) {
 
   if (!app.init) {
@@ -25,7 +25,7 @@ function ClassDetail({ common, app, loading }) {
     },
     {
       title: '班级',
-      dataIndex: 'userID',
+      dataIndex: 'class_name',
     },
 
     {
@@ -36,27 +36,24 @@ function ClassDetail({ common, app, loading }) {
     },
     {
       title: '优势测评',
-      dataIndex: 'userID',
-    },
-    {
-      title: '职业测评',
-      dataIndex: 'userID',
+      dataIndex: 'buy_profile',
     },
 
   ]
+
   return (
     <PageTitle router={app.router} title="班级详情">
-      <Mcard>
+      <Mcard title="基本信息">
         <Row>
           <Col span={8}>班级名称：{detail.class_name}</Col>
           <Col span={8}>班级编号：{detail.id}</Col>
-          <Col span={8}>学校名称：{detail.school_id}</Col>
+          <Col span={8}>学校名称：{detail.school ? detail.school.school_name : ''}</Col>
           <Col span={8}>人数：{detail.persons}</Col>
         </Row>
       </Mcard>
-      {/* <Mcard title="学生列表">
-        <Table columns={columns} dataSource={detail.school} rowKey="id" />
-      </Mcard> */}
+      <Mcard title="学生列表">
+        <SelfDataTable columns={columns} url="ClassManage/listStudent" params={{ class_id: detail.id }} rowKey="id" />
+      </Mcard>
     </PageTitle>
   )
 }

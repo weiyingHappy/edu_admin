@@ -6,7 +6,7 @@ import { Mcard, PageTitle, MySpin } from '../../layouts'
 
 function StudentDetail({ common, app, loading }) {
 
-  if (!app.init || !app.user.funcs.includes('2')) {
+  if (!app.init ) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
   }
 
