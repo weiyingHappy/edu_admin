@@ -42,6 +42,25 @@ module.exports = {
       folder: 'classes',
       lazy: true,
       cus: 'ClassManage'
+    },
+    profession: {
+      model: 'profession',
+      noadd: true,
+      lazy: true,
+      cus: 'ClassManage'
+    },
+    words: {
+      model: 'words',
+      noadd: true,
+      lazy: true,
+      cus: 'WordsManage'
+    },
+    order: {
+      model: 'order',
+      noadd: true,
+      nodetail: true,
+      lazy: true,
+      cus: 'OrderManage'
     }
   },
 }

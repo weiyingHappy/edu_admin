@@ -1,7 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Upload, Icon, Modal, message } from 'antd'
 import cookie from 'js-cookie'
 import config from '../../../configs/config'
+import { connect } from 'dva'
 
 class MultiUpFile extends React.PureComponent {
   constructor(props) {
@@ -15,6 +17,7 @@ class MultiUpFile extends React.PureComponent {
   }
 
   componentWillMount() {
+    console.log('1111111111111111111111111111',this.props)
     const _fileList = (this.state.imgs || []).map((img, i) => {
       return {
         uid: i, name: `${i}`, status: 'done', url: img,
@@ -114,5 +117,9 @@ class MultiUpFile extends React.PureComponent {
 MultiUpFile.defaultProps = {
   length: 5,
 }
+function mapStateToProps() {
+  return {}
+}
 
-export default MultiUpFile
+// export default MultiUpFile
+export default connect(mapStateToProps)(MultiUpFile)

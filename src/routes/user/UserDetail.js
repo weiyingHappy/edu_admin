@@ -109,21 +109,22 @@ class UserDetail extends React.PureComponent {
     let tArr = this.parseBuyInfo()
     const getBuyInfo = tArr.length ? tArr.map(item =>
       <Card style={{ marginBottom: '6px' }} key={item.msg} title={item.msg}
-        extra={<Popconfirm placement="topLeft" title={"确认移除吗"} onConfirm={() => {
-          let data = {}
-          data.userID = detail.userID
-          item.test == 1 ? data.del_via = 0 : item.test == 2 ? data.del_career = 0 : '' //根据测评类型控制传的参数字段名
-          dispatch({
-            type: 'app/request',
-            uri: 'UserManage/editAssessment',
-            data: { ...data },
-            callback: ({ results }) => {
-              history.push(`/${app.router.model}/detail/${detail.userID}`)
-            },
-          })
-        }} okText="确定" cancelText="取消">
-          <Button>移除购买</Button>
-        </Popconfirm>}>
+        // extra={<Popconfirm placement="topLeft" title={"确认移除吗"} onConfirm={() => {
+        //   let data = {}
+        //   data.userID = detail.userID
+        //   item.test == 1 ? data.del_via = 0 : item.test == 2 ? data.del_career = 0 : '' //根据测评类型控制传的参数字段名
+        //   dispatch({
+        //     type: 'app/request',
+        //     uri: 'UserManage/editAssessment',
+        //     data: { ...data },
+        //     callback: ({ results }) => {
+        //       history.push(`/${app.router.model}/detail/${detail.userID}`)
+        //     },
+        //   })
+        // }} okText="确定" cancelText="取消">
+        //   <Button>移除购买</Button>
+        // </Popconfirm>}
+        >
         <Row>
           <Col span={8}>购买方式：{covertBuyType(item.buy_type)}</Col>
           {item.buy_type == 2 ? <Col span={8}>订单号：{item.order_no}</Col> : ''}

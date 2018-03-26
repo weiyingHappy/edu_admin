@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'dva'
 import { Row, Col, Button, message } from 'antd'
 import Mcard from '../../layouts/Mcard'
+import {MultiUpFile} from '../../components/General'
 import cs from '../app.less'
 import {
-  SAButton, SearchSelect, SelectDataTable,
+  SAButton, SearchSelect, DataTable,
   SearchInput,
 } from '../../components/General'
 import { ChangeBuyType } from '../../components/ModalToast'
@@ -166,10 +167,12 @@ class UserList extends React.PureComponent {
           </Row>
         </Mcard>
         <Mcard >
-          <ChangeBuyType visible={this.state.visible} title="修改购买项目" onShow={this.selectItem} onCreate={this.onCreate} onCancel={this.onCancel} >
+          {/* <ChangeBuyType visible={this.state.visible} title="修改购买项目" onShow={this.selectItem} onCreate={this.onCreate} onCancel={this.onCancel} >
             <Button type="primary">批量修改购买项目</Button>
           </ChangeBuyType>
-          <SelectDataTable rowKey="id" rowSelection={rowSelection} columns={columns} model={common} />
+          <p>已选择<span style={{color:'red'}}>{selectedRowKeys.length}</span>条数据</p>
+          <SelectDataTable rowKey="id" rowSelection={rowSelection} columns={columns} model={common} /> */}
+          <DataTable rowKey="id" columns={columns} model={common}/>
         </Mcard>
       </div>
     )
