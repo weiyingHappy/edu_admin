@@ -9,7 +9,7 @@ import { DataTable, AuthButtonAdd , SAButton,SearchSelect,
 
 function RoleList({ dispatch, history, common, app }) {
 
-  if (!app.init || !app.user.funcs.includes('2')) {
+  if (!app.init ) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
   }
   const { search } = common

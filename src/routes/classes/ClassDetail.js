@@ -3,7 +3,7 @@ import { Row, Col } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
 import { SelfDataTable } from '../../components/General'
-function ClassDetail({ common, app, loading }) {
+function ClassDetail({ common, app, loading,history }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -38,6 +38,18 @@ function ClassDetail({ common, app, loading }) {
       title: '优势测评',
       dataIndex: 'buy_profile',
     },
+    {
+      title: '操作',
+      render(record) {
+        return (
+          <div>
+            <span onClick={() => { history.push(`/user/detail/${record.id}`) }} >
+              查看详情
+            </span>
+          </div>
+        )
+      },
+    },
 
   ]
 
@@ -53,6 +65,9 @@ function ClassDetail({ common, app, loading }) {
       </Mcard>
       <Mcard title="学生列表">
         <SelfDataTable columns={columns} url="ClassManage/listStudent" params={{ class_id: detail.id }} rowKey="id" />
+      </Mcard>
+      <Mcard title="教师列表">
+        <SelfDataTable columns={columns} url="ClassManage/listTeacher" params={{ class_id: detail.id }} rowKey="id" />
       </Mcard>
     </PageTitle>
   )

@@ -2,7 +2,7 @@ module.exports = {
   homePath: '/my', // 登录后进入的页面
   apiPackage: 'Admin', // api包名
   openPages: ['/', '/login', '/cs'], // 单页路径（不显示slider的页面）
-  productionDomain: 'cooke100.com', // 生产环境域名
+  productionDomain: 'lianwuyun.cn', // 生产环境域名
   testingDomain: 'lianwuyun.cn', // 测试环境域名
   apiPrefix: { // 不同环境api地址前缀
     production: 'http://www.cooke100.com/api/',

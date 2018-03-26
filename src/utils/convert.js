@@ -37,6 +37,36 @@ export const testType = [
   },
   {
     value: '2',
-    name: '职业'
+    name: '职业测评'
   },
 ]
+export function covertBuyType(type) {
+  switch (+type) {
+    case 1:
+      return '统一签约'
+    case 2:
+      return '自行购买'
+    default:
+      return '统一签约'
+  }
+}
+//一期无自行购买
+export const buyType = [
+  {
+    value: '1',
+    name: '统一签约'
+  },
+  // {
+  //   value: '2',
+  //   name: '自行购买'
+  // },
+]
+
+export function clearString(s) {
+  var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）&;|{}【】‘；：”“'。，、？]")
+  var rs = "";
+  for (var i = 0; i < s.length; i++) {
+    rs = rs + s.substr(i, 1).replace(pattern, '');
+  }
+  return rs;
+}

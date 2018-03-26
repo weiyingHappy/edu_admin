@@ -3,7 +3,7 @@ import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
-import { DataTable, AuthButtonAdd, SearchInput, SAButton } from '../../components/General'
+import { DataTable, SearchInput, SAButton } from '../../components/General'
 
 function ClassList({ dispatch, history, common, app }) {
 
@@ -75,7 +75,7 @@ function ClassList({ dispatch, history, common, app }) {
         </Row>
       </Mcard>
       <Mcard >
-        <AuthButtonAdd authId="101" history={history} />
+        {/* <AuthButtonAdd authId="101" history={history} /> */}
         <DataTable columns={columns} model={common} rowKey="id" />
       </Mcard>
     </div>

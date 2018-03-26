@@ -22,9 +22,8 @@ module.exports = {
     },
     school: {
       model: 'school',
-      noadd: true,
       lazy: true,
-      cus: 'UserManage',
+      cus: 'SchoolManage',
     },
     member: {
       model: 'member',
@@ -43,11 +42,6 @@ module.exports = {
       folder: 'classes',
       lazy: true,
       cus: 'ClassManage'
-    },
-    student: {
-      model: 'student',
-      lazy: true,
-      cus: 'StudentManage'
     }
   },
 }

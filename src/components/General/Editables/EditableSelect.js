@@ -25,6 +25,7 @@ class EditableSelect extends React.PureComponent {
   }
 
   handleChange = () => {
+    console.log('sss',this.state.initValue,this.state.nowValue)
     if (this.state.initValue == this.state.nowValue) {
       this.setState({ edit: false })
       return
@@ -33,7 +34,7 @@ class EditableSelect extends React.PureComponent {
     const payload = {}
     payload[bindName] = this.state.nowValue
     dispatch({
-      type: `${router.model}/edit`,
+      type: `${router.codeModel}/edit`,
       payload: { ...payload },
       action: 'edit',
       didAction: {

@@ -49,15 +49,15 @@ const App = ({ children, app, loading, location, dispatch }) => {
     }
   }
   return (
-    <div>
+    <div style={{height:'100%'}}>
       <Loader fullScreen spinning={loading.effects['app/query']} />
-      <Layout>
+      <Layout style={{height:'100%'}}>
         <Sider
           router={router}
           siderFold={siderFold}
           user={user}
         />
-        <Layout>
+        <Layout style={{height:'100%'}}>
           <Header
             switchSider={switchSider}
             siderFold={siderFold}
