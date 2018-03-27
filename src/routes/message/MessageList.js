@@ -3,9 +3,10 @@ import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
-import { DataTable, SearchInput, SAButton } from '../../components/General'
+import { wordsType, covertWordsType } from '../../utils/convert'
+import { DataTable, SearchInput, SAButton, SearchSelect } from '../../components/General'
 
-function ClassList({ dispatch, history, common, app }) {
+function MessageList({ dispatch, history, common, app }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -13,24 +14,26 @@ function ClassList({ dispatch, history, common, app }) {
 
   const columns = [
     {
-      title: '职业名称',
-      dataIndex: 'class_name',
+      title: '姓名',
+      dataIndex: 'name',
     },
     {
-      title: '职业编号',
-      dataIndex: 'school_name',
+      title: '联系方式',
+      dataIndex: 'phone',
     },
     {
-      title: '教育水平等级',
-      dataIndex: 'id',
+      title: '留言分类',
+      render: (r) => (
+        covertWordsType(r.type)
+      )
     },
     {
-      title: '行业',
-      dataIndex: 'create_time',
-    },
-    {
-      title: '职业评级',
-      dataIndex: 'persons',
+      title: '留言内容',
+      width:'200px',
+      dataIndex: 'message',
+      render:(text)=>(
+        <p className={cs.textOver} style={{width:'200px'}}>{text}</p>
+      )
     },
     {
       title: '操作',
@@ -52,36 +55,22 @@ function ClassList({ dispatch, history, common, app }) {
         <Row>
           <Col span={12}>
             <SearchInput
-              lable="职业名称"
-              value={search.class_name}
-              bindName="class_name"
+              lable="姓名"
+              value={search.name}
+              bindName="name"
             />
-            <SearchInput
-              lable="职业区域"
-              value={search.class_name}
-              bindName="class_name"
-            />
-            <SearchInput
-              lable="学校"
-              value={search.class_name}
-              bindName="class_name"
+            <SearchSelect
+              lable="留言分类"
+              options={wordsType}
+              value={search.type}
+              bindName="type"
             />
           </Col>
           <Col span={12}>
             <SearchInput
-              lable="职业编号"
-              value={search.class_id}
-              bindName="class_id"
-            />
-             <SearchInput
-              lable="行业"
-              value={search.class_name}
-              bindName="class_name"
-            />
-             <SearchInput
-              lable="班级编号"
-              value={search.class_name}
-              bindName="class_name"
+              lable="联系方式"
+              value={search.phone}
+              bindName="phone"
             />
             <SAButton
               dispatch={dispatch}
@@ -103,4 +92,4 @@ function mapStateToProps({ app, common }) {
   return { common, app }
 }
 
-export default connect(mapStateToProps)(ClassList)
+export default connect(mapStateToProps)(MessageList)

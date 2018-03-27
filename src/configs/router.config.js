@@ -49,18 +49,25 @@ module.exports = {
       lazy: true,
       cus: 'ClassManage'
     },
-    words: {
-      model: 'words',
+    subject: {
+      model: 'subject',
+      folder: 'profession',
       noadd: true,
       lazy: true,
-      cus: 'WordsManage'
+      cus: 'ClassManage'
     },
-    order: {
-      model: 'order',
+    message: {
+      model: 'message',
+      noadd: true,
+      lazy: true,
+      cus: 'MessageManage'
+    },
+    organ: {
+      model: 'organ',
       noadd: true,
       nodetail: true,
       lazy: true,
-      cus: 'OrderManage'
+      cus: 'OrganManage'
     }
   },
 }

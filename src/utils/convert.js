@@ -62,6 +62,26 @@ export const buyType = [
   // },
 ]
 
+export const wordsType = [
+  {
+    value: '1',
+    name: '咨询类'
+  },
+  {
+    value: '2',
+    name: '业务类'
+  },
+]
+export function covertWordsType(type) {
+  switch (+type) {
+    case 1:
+      return '咨询类'
+    case 2:
+      return '业务类'
+    default:
+      return '咨询类'
+  }
+}
 export function clearString(s) {
   var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）&;|{}【】‘；：”“'。，、？]")
   var rs = "";

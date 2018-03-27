@@ -5,7 +5,7 @@ import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
 import { DataTable, SearchInput, SAButton } from '../../components/General'
 
-function ClassList({ dispatch, history, common, app }) {
+function SubjectList({ dispatch, history, common, app }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -13,24 +13,20 @@ function ClassList({ dispatch, history, common, app }) {
 
   const columns = [
     {
-      title: '职业名称',
+      title: '学科名称',
       dataIndex: 'class_name',
     },
     {
-      title: '职业编号',
+      title: '学科编号',
       dataIndex: 'school_name',
     },
     {
-      title: '教育水平等级',
+      title: '专业代码',
       dataIndex: 'id',
     },
     {
-      title: '行业',
+      title: '门类',
       dataIndex: 'create_time',
-    },
-    {
-      title: '职业评级',
-      dataIndex: 'persons',
     },
     {
       title: '操作',
@@ -52,34 +48,24 @@ function ClassList({ dispatch, history, common, app }) {
         <Row>
           <Col span={12}>
             <SearchInput
-              lable="职业名称"
+              lable="学科名称"
               value={search.class_name}
               bindName="class_name"
             />
             <SearchInput
-              lable="职业区域"
-              value={search.class_name}
-              bindName="class_name"
-            />
-            <SearchInput
-              lable="学校"
+              lable="专业代码"
               value={search.class_name}
               bindName="class_name"
             />
           </Col>
           <Col span={12}>
             <SearchInput
-              lable="职业编号"
+              lable="学科编号"
               value={search.class_id}
               bindName="class_id"
             />
              <SearchInput
-              lable="行业"
-              value={search.class_name}
-              bindName="class_name"
-            />
-             <SearchInput
-              lable="班级编号"
+              lable="门类"
               value={search.class_name}
               bindName="class_name"
             />
@@ -103,4 +89,4 @@ function mapStateToProps({ app, common }) {
   return { common, app }
 }
 
-export default connect(mapStateToProps)(ClassList)
+export default connect(mapStateToProps)(SubjectList)

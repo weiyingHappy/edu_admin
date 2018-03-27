@@ -130,17 +130,17 @@ class UserList extends React.PureComponent {
                 bindName="userID"
               />
               <SearchInput
-                lable="班级名称"
-                value={search.class_name}
-                bindName="class_name"
+                lable="学校编码"
+                value={search.school_code}
+                bindName="school_code"
               />
 
             </Col>
             <Col span={12}>
               <SearchInput
                 lable="班级名称"
-                value={search.class_id}
-                bindName="class_id"
+                value={search.class_name}
+                bindName="class_name"
               />
               <SearchSelect
                 lable="角色"
@@ -171,7 +171,9 @@ class UserList extends React.PureComponent {
             <Button type="primary">批量修改购买项目</Button>
           </ChangeBuyType>
           <p>已选择<span style={{color:'red'}}>{selectedRowKeys.length}</span>条数据</p>
-          <SelectDataTable rowKey="id" rowSelection={rowSelection} columns={columns} model={common} /> */}
+          <SelectDataTable rowKey="id" rowSelection={rowSelection} columns={columns} model={common} />
+          批量修改暂时不做
+          */}
           <DataTable rowKey="id" columns={columns} model={common}/>
         </Mcard>
       </div>

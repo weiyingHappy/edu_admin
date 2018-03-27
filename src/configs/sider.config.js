@@ -47,13 +47,13 @@ module.exports = {
       id: '6',
       name: '留言管理',
       icon: 'solution',
-      route: '/words/list/1'
+      route: '/message/list/1'
     },
     {
       id: '7',
-      name: '订单管理',
+      name: '客户管理',
       icon: 'solution',
-      route: '/order/list/1'
+      route: '/organ/list/1'
     },
   ],
 
@@ -62,7 +62,8 @@ module.exports = {
     school: { key: '2', name: '学校' },
     role: { key: '3', name: '角色' },
     class: { key: '4', name: '班级' },
-    profession: { key: '5', name: '职业测评' ,sub:'5_1'},
-    student: { key: '7', name: '订单' }
+    profession: { key: '5', name: '职业测评', sub: '5_1' },
+    message: { key: '6', name: '留言' },
+    student: { key: '7', name: '客户' }
   },
 }
