@@ -43,7 +43,7 @@ class UserDetail extends React.PureComponent {
       data: { user_id: detail.id, add_class_id: e.class_id },
       callback: ({ results }) => {
         this.setState({ visible: false })
-        history.push(`/${app.router.model}/detail/${detail.id}`)
+        history.push(`/${app.router.model}/detail/${detail.userID}`)
       },
     })
   }
@@ -157,7 +157,6 @@ class UserDetail extends React.PureComponent {
                   </Row>
                 </Card>
               ))}
-
             </Mcard> : ''
           }
 
