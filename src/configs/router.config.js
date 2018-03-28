@@ -43,11 +43,11 @@ module.exports = {
       lazy: true,
       cus: 'ClassManage'
     },
-    profession: {
-      model: 'profession',
+    career: {
+      model: 'career',
       noadd: true,
       lazy: true,
-      cus: 'ClassManage'
+      cus: 'CareerManage'
     },
     subject: {
       model: 'subject',

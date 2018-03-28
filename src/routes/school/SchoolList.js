@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
-import cs from '../app.less'
 import { DataTable, AuthButtonAdd, SAButton, SearchInput } from '../../components/General'
 
 function SchoolList({ dispatch, history, common, app }) {

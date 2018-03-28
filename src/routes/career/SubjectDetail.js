@@ -13,44 +13,6 @@ function ProfessionDetail({ common, app, loading,history }) {
   }
 
   const { detail } = common
-  const columns = [
-    {
-      title: '姓名',
-      dataIndex: 'name',
-    },
-    {
-      title: '账号',
-      dataIndex: 'userID',
-    },
-    {
-      title: '班级',
-      dataIndex: 'class_name',
-    },
-
-    {
-      title: '联系方式',
-      render: (r) => (
-        r.phone ? r.phone : r.email
-      )
-    },
-    {
-      title: '优势测评',
-      dataIndex: 'buy_profile',
-    },
-    {
-      title: '操作',
-      render(record) {
-        return (
-          <div>
-            <span onClick={() => { history.push(`/user/detail/${record.id}`) }} >
-              查看详情
-            </span>
-          </div>
-        )
-      },
-    },
-
-  ]
 
   return (
     <PageTitle router={app.router} title="职业详情">

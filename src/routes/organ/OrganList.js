@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'dva'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, message } from 'antd'
 import Mcard from '../../layouts/Mcard'
-import cs from '../app.less'
-import { apiPrefix } from '../../utils/utils'
 import { SelectDataTable, SearchInput, SAButton } from '../../components/General'
 import { UpExcel } from '../../components/ModalToast'
 class OrgantList extends React.PureComponent {
@@ -21,9 +19,30 @@ class OrgantList extends React.PureComponent {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   }
-  exportAll = () => {
-    const { common } = this.props
+  someExport = (type = 1) => {
+    // type:1 =>批量导出
+    // type:2 =>部分导出
+    const { common, dispatch } = this.props
     const { search } = common
+    let data = { page: 1 }
+    if (type == 1) {
+      if (!this.state.selectedRowKeys.length) {
+        message.error('请选择项目')
+        return
+      }
+      data.id = this.state.selectedRowKeys
+    }
+    if (type == 2) {
+      Object.assign(data, search)
+    }
+    dispatch({
+      type: 'app/request',
+      uri: '/OrganManage/exportOrgan',
+      data: data,
+      callback: ({ results }) => {
+        console.log(results)
+      }
+    })
 
   }
   upExcel = () => {
@@ -33,6 +52,18 @@ class OrgantList extends React.PureComponent {
   }
   formSubmit = (e) => {
     console.log(e)
+    const { dispatch } = this.props
+    var fd = new FormData(document.querySelector('#form'));
+    dispatch({
+      type: 'app/request',
+      uri: '/OrganManage/batchOrgan',
+      data: fd,
+      callback: ({ results }) => {
+        this.setState({
+          upVisible: false
+        })
+      },
+    })
   }
   onCancel = () => {
     this.setState({
@@ -46,7 +77,6 @@ class OrgantList extends React.PureComponent {
       onChange: this.onSelectChange,
     };
     const { common, app, dispatch } = this.props
-    const url = `${apiPrefix()}/Admin/DownManage/batchOrgan`
     const columns = [
       {
         title: '合同编号',
@@ -120,37 +150,12 @@ class OrgantList extends React.PureComponent {
           </Row>
         </Mcard>
         <Mcard >
-          <form id="f1" ref="f1"
-          // method="post" action={url} encType="multipart/form-data"
-          >
-            <input type="file" name="batch_organ" onChange={
-              (e) => {
-                console.log(e)
-                this.setState({ batch_organ: e.target.value })
-              }} />
-            <input type="submit"
-              onClick={(e) => {
-                e.preventDefault()
-                var fd = new FormData(document.querySelector('#f1'));
-                // fd.append("batch_organ", this.state.batch_organ)
-                console.log(e, this.refs.f1, fd)
-                dispatch({
-                  type: 'app/request',
-                  uri: '/OrganManage/batchOrgan',
-                  data: fd,
-                  callback: ({ results }) => {
-                    console.log('r', results)
-                  },
-                })
-              }
-              }
-            />
-          </form>
-
-          <Button type="primary" onClick={() => this.exportAll}>全部导出</Button>
-          <Button onClick={() => this.upExcel}>批量导入</Button>
+          <Button onClick={this.upExcel}>批量导入</Button>
+          <Button onClick={() => this.someExport("1")} style={{margin:'0 6px'}}>批量导出</Button>
+          <Button type="primary" onClick={() => this.someExport("2")}>全部导出</Button>
+          <p>已选择<span style={{color:'red'}}>{selectedRowKeys.length}</span>条数据</p>
           <SelectDataTable columns={columns} rowSelection={rowSelection} model={common} rowKey="id" />
-          {/* <UpExcel title="选择excel文件" dispatch={dispatch} visible={this.state.upVisible} onCreate={this.formSubmit} onCancel={this.onCancel} /> */}
+          <UpExcel title="选择excel文件" dispatch={dispatch} uri="/OrganManage/batchOrgan" visible={this.state.upVisible} onCreate={this.formSubmit} onCancel={this.onCancel} />
         </Mcard>
       </div>)
   }

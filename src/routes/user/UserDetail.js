@@ -3,7 +3,7 @@ import { Row, Col, Card, Button, message, Popconfirm, Progress } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
 import { AddResponClass, AddBuyInfo } from '../../components/ModalToast'
-import { covertUserType,  covertBuyType, testType } from '../../utils/convert'
+import { covertUserType, covertBuyType, testType } from '../../utils/convert'
 import { apiPrefix } from '../../utils/utils'
 
 class UserDetail extends React.PureComponent {
@@ -104,27 +104,27 @@ class UserDetail extends React.PureComponent {
     return arr
   }
   render() {
-    const { common, app, dispatch, history } = this.props
+    const { common, app } = this.props
     const { detail } = common
     let tArr = this.parseBuyInfo()
     const getBuyInfo = tArr.length ? tArr.map(item =>
       <Card style={{ marginBottom: '6px' }} key={item.msg} title={item.msg}
-        // extra={<Popconfirm placement="topLeft" title={"确认移除吗"} onConfirm={() => {
-        //   let data = {}
-        //   data.userID = detail.userID
-        //   item.test == 1 ? data.del_via = 0 : item.test == 2 ? data.del_career = 0 : '' //根据测评类型控制传的参数字段名
-        //   dispatch({
-        //     type: 'app/request',
-        //     uri: 'UserManage/editAssessment',
-        //     data: { ...data },
-        //     callback: ({ results }) => {
-        //       history.push(`/${app.router.model}/detail/${detail.userID}`)
-        //     },
-        //   })
-        // }} okText="确定" cancelText="取消">
-        //   <Button>移除购买</Button>
-        // </Popconfirm>}
-        >
+      // extra={<Popconfirm placement="topLeft" title={"确认移除吗"} onConfirm={() => {
+      //   let data = {}
+      //   data.userID = detail.userID
+      //   item.test == 1 ? data.del_via = 0 : item.test == 2 ? data.del_career = 0 : '' //根据测评类型控制传的参数字段名
+      //   dispatch({
+      //     type: 'app/request',
+      //     uri: 'UserManage/editAssessment',
+      //     data: { ...data },
+      //     callback: ({ results }) => {
+      //       history.push(`/${app.router.model}/detail/${detail.userID}`)
+      //     },
+      //   })
+      // }} okText="确定" cancelText="取消">
+      //   <Button>移除购买</Button>
+      // </Popconfirm>}
+      >
         <Row>
           <Col span={8}>购买方式：{covertBuyType(item.buy_type)}</Col>
           {item.buy_type == 2 ? <Col span={8}>订单号：{item.order_no}</Col> : ''}
@@ -163,15 +163,19 @@ class UserDetail extends React.PureComponent {
           <Mcard title="购买信息" extra={this.parseBuyInfo().length < testType.length ? <Button type="primary" onClick={this.addBuyInfo} >新增购买信息</Button> : false}>
             {getBuyInfo}
           </Mcard>
+          {/* 优势测评，青年100道题，成人120道 */}
           {detail.answers ?
             <Mcard title="测评信息">
               {detail.answers.length ?
                 (detail.answers || []).map(item => (
                   <Card key={item.type} title={item.type == 1 ? '优势测评' : '职业测评'}
-                    extra={<div><Button type="primary" style={{ marginRight: '6px' }} disabled={(item.count / (item.type == 1 ? 120 : 180)) == 1 ? false : true}>查看测评报告</Button> {(item.count / (item.type == 1 ? 120 : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/123/career`}>下载报告</a> : <span>测评未完成</span>}</div>}>
+                    extra={<div><Button type="primary" style={{ marginRight: '6px' }}
+                      disabled={(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>查看测评报告</Button>
+                      {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/123/career`}>下载报告</a> : <span>测评未完成</span>}
+                    </div>}>
                     <Row>
                       <Col span={8}>已完成：{item.count}道题目</Col>
-                      <Col span={8}>测试进度：<Progress style={{ width: '120px' }} percent={(item.count / (item.type == 1 ? 120 : 180)) * 100} size="small" /></Col>
+                      <Col span={8}>测试进度：<Progress style={{ width: '120px' }} percent={(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)).toFixed(2) * 100} size="small" /></Col>
                       <Col span={8}>最近测试时间：{item.last_modify_time}</Col>
                     </Row>
                   </Card>

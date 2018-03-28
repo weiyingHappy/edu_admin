@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
-import cs from '../app.less'
 import { DataTable, SearchInput, SAButton } from '../../components/General'
 
-function ClassList({ dispatch, history, common, app }) {
+function CareerList({ dispatch, history, common, app }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -14,15 +13,15 @@ function ClassList({ dispatch, history, common, app }) {
   const columns = [
     {
       title: '职业名称',
-      dataIndex: 'class_name',
+      dataIndex: 'name',
     },
     {
       title: '职业编号',
-      dataIndex: 'school_name',
+      dataIndex: 'code',
     },
     {
       title: '教育水平等级',
-      dataIndex: 'id',
+      dataIndex: 'edu_level',
     },
     {
       title: '行业',
@@ -36,11 +35,9 @@ function ClassList({ dispatch, history, common, app }) {
       title: '操作',
       render(record) {
         return (
-          <div className={cs.tableAction}>
             <span onClick={() => { history.push(`/${app.router.model}/detail/${record.id}`) }} >
               查看详情
             </span>
-          </div>
         )
       },
     },
@@ -103,4 +100,4 @@ function mapStateToProps({ app, common }) {
   return { common, app }
 }
 
-export default connect(mapStateToProps)(ClassList)
+export default connect(mapStateToProps)(CareerList)

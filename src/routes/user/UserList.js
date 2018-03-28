@@ -1,33 +1,18 @@
 import React from 'react'
 import { connect } from 'dva'
-import { Row, Col, Button, message } from 'antd'
+import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
-import {MultiUpFile} from '../../components/General'
 import cs from '../app.less'
 import {
   SAButton, SearchSelect, DataTable,
   SearchInput,
 } from '../../components/General'
-import { ChangeBuyType } from '../../components/ModalToast'
 
 import { covertUserType, userType } from '../../utils/convert'
 class UserList extends React.PureComponent {
   state = {
     selectedRowKeys: [],
     visible: false
-  }
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({ selectedRowKeys });
-  }
-  selectItem = () => {
-    if (this.state.selectedRowKeys.length < 1) {
-      message.error('请先选择要购买的人员')
-      return
-    }
-    this.setState({
-      visible: true
-    })
   }
   onCancel = () => {
     this.setState({
@@ -36,7 +21,6 @@ class UserList extends React.PureComponent {
   }
   onCreate = (e) => {
     const { dispatch } = this.props
-    console.log(e, 222)
     dispatch({
       type: 'app/request',
       uri: 'UserManage/batchProfile',
@@ -49,11 +33,6 @@ class UserList extends React.PureComponent {
   render() {
     const { dispatch, history, common, app } = this.props
     const { search } = common
-    const { selectedRowKeys } = this.state
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-    };
     const columns = [
       {
         title: '姓名',

@@ -33,7 +33,7 @@ module.exports = {
           id: "5_1",
           name: '职业管理',
           icon: 'solution',
-          route: '/profession/list/1'
+          route: '/career/list/1'
         },
         {
           id: "5_2",
@@ -62,7 +62,7 @@ module.exports = {
     school: { key: '2', name: '学校' },
     role: { key: '3', name: '角色' },
     class: { key: '4', name: '班级' },
-    profession: { key: '5', name: '职业测评', sub: '5_1' },
+    career: { key: '5', name: '职业测评', sub: '5_1' },
     message: { key: '6', name: '留言' },
     student: { key: '7', name: '客户' }
   },

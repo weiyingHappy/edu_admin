@@ -1,18 +1,15 @@
 //新增购买信息
 import React from 'react'
 import { Modal } from 'antd'
+import * as cs from './index.css'
+
 
 class UpExcel extends React.PureComponent {
   state = {
-
+    fileName: ''
   }
   render() {
-    const { title, visible, onCreate, onCancel, dispatch } = this.props
-    const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 16 },
-      hasFeedback: true,
-    }
+    const { title, visible, onCreate, onCancel } = this.props
     return (
       <div>
         <Modal title={title}
@@ -22,31 +19,18 @@ class UpExcel extends React.PureComponent {
           onOk={onCreate}
           onCancel={onCancel}
         >
-          {/* <form id="f1" ref="f1"
+          <form id="form"
           >
-            <input type="file" name="batch_organ" onChange={
-              (e) => {
-                console.log(e)
-                this.setState({ batch_organ: e.target.value })
-              }} />
-            <input type="submit"
-              onClick={(e) => {
-                e.preventDefault()
-                var fd = new FormData(document.querySelector('#f1'));
-                // fd.append("batch_organ", this.state.batch_organ)
-                console.log(e, this.refs.f1, fd)
-                dispatch({
-                  type: 'app/request',
-                  uri: '/DownManage/batchOrgan',
-                  data: fd,
-                  callback: ({ results }) => {
-                    console.log('r', results)
-                  },
-                })
-              }
-              }
-            />
-          </form> */}
+            <a href="javascript:void(0)" className={cs.file}>选择文件
+              <input type="file" name="batch_organ"
+                onChange={(e) => {
+                  this.setState({
+                    fileName: e.target.value.slice(e.target.value.lastIndexOf("\\") + 1)
+                  })
+                }} />
+            </a>
+            <span>{this.state.fileName}</span>
+          </form>
         </Modal>
       </div>
     )

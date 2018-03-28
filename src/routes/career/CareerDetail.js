@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
-function ProfessionDetail({ common, app, loading,history }) {
+function CareerDetail({ common, app, loading, history }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -13,45 +13,7 @@ function ProfessionDetail({ common, app, loading,history }) {
   }
 
   const { detail } = common
-  const columns = [
-    {
-      title: '姓名',
-      dataIndex: 'name',
-    },
-    {
-      title: '账号',
-      dataIndex: 'userID',
-    },
-    {
-      title: '班级',
-      dataIndex: 'class_name',
-    },
-
-    {
-      title: '联系方式',
-      render: (r) => (
-        r.phone ? r.phone : r.email
-      )
-    },
-    {
-      title: '优势测评',
-      dataIndex: 'buy_profile',
-    },
-    {
-      title: '操作',
-      render(record) {
-        return (
-          <div>
-            <span onClick={() => { history.push(`/user/detail/${record.id}`) }} >
-              查看详情
-            </span>
-          </div>
-        )
-      },
-    },
-
-  ]
-
+  console.log(app)
   return (
     <PageTitle router={app.router} title="职业详情">
       <Mcard title="基本信息">
@@ -69,10 +31,20 @@ function ProfessionDetail({ common, app, loading,history }) {
         <p>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</p>
       </Mcard>
       <Mcard title="工作特点">
-        <p>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</p>
+        {detail.feature ?
+          (detail.feature || []).map((item,i)=> (
+            <p>{i+1}、{item.class}------{item.desc}</p>
+          ))
+          : ''
+        }
       </Mcard>
       <Mcard title="知识要求">
-        <p>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</p>
+        {detail.knowledge ?
+          (detail.knowledge || []).map((item,i) => (
+            <p>{i+1}、{item.class}------{item.desc}</p>
+          ))
+          : ''
+        }
       </Mcard>
       <Mcard title="个性要求">
         <p>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</p>
@@ -85,4 +57,4 @@ function mapStateToProps({ loading, common, app }) {
   return { loading, common, app }
 }
 
-export default connect(mapStateToProps)(ProfessionDetail)
+export default connect(mapStateToProps)(CareerDetail)

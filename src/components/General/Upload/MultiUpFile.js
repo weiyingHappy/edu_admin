@@ -1,9 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Upload, Icon, Modal, message } from 'antd'
 import cookie from 'js-cookie'
 import config from '../../../configs/config'
-import { connect } from 'dva'
 
 class MultiUpFile extends React.PureComponent {
   constructor(props) {
