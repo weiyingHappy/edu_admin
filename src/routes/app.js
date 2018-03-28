@@ -44,20 +44,20 @@ const App = ({ children, app, loading, location, dispatch }) => {
       dispatch({
         type: 'app/logout',
       })
-    }else if(key === 'my'){
+    } else if (key === 'my') {
       dispatch(routerRedux.push('/my'))
     }
   }
   return (
-    <div style={{height:'100%',minWidth:'1200px'}}>
+    <div style={{ height: '100%', minWidth: '1200px' }}>
       <Loader fullScreen spinning={loading.effects['app/query']} />
-      <Layout style={{height:'100%'}}>
+      <Layout style={{ height: '100%' }}>
         <Sider
           router={router}
           siderFold={siderFold}
           user={user}
         />
-        <Layout style={{height:'100%'}}>
+        <Layout style={{ height: '100%' }}>
           <Header
             switchSider={switchSider}
             siderFold={siderFold}
