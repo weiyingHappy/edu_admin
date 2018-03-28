@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       id: '7',
-      name: '客户管理',
+      name: '订单管理',
       icon: 'solution',
       route: '/organ/list/1'
     },
@@ -64,6 +64,6 @@ module.exports = {
     class: { key: '4', name: '班级' },
     career: { key: '5', name: '职业测评', sub: '5_1' },
     message: { key: '6', name: '留言' },
-    student: { key: '7', name: '客户' }
+    student: { key: '7', name: '订单' }
   },
 }
