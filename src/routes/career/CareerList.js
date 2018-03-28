@@ -3,7 +3,7 @@ import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import { DataTable, SearchInput, SAButton } from '../../components/General'
-
+import cs from '../app.less'
 function CareerList({ dispatch, history, common, app }) {
 
   if (!app.init) {
@@ -25,7 +25,7 @@ function CareerList({ dispatch, history, common, app }) {
     },
     {
       title: '行业',
-      dataIndex: 'create_time',
+      dataIndex: 'industry',
     },
     {
       title: '职业评级',
@@ -35,9 +35,12 @@ function CareerList({ dispatch, history, common, app }) {
       title: '操作',
       render(record) {
         return (
-            <span onClick={() => { history.push(`/${app.router.model}/detail/${record.id}`) }} >
+          <div className={cs.tableAction}>
+           <span onClick={() => { history.push(`/${app.router.model}/detail/${record.id}`) }} >
               查看详情
             </span>
+          </div>
+
         )
       },
     },
@@ -58,11 +61,7 @@ function CareerList({ dispatch, history, common, app }) {
               value={search.class_name}
               bindName="class_name"
             />
-            <SearchInput
-              lable="学校"
-              value={search.class_name}
-              bindName="class_name"
-            />
+
           </Col>
           <Col span={12}>
             <SearchInput
@@ -72,14 +71,10 @@ function CareerList({ dispatch, history, common, app }) {
             />
              <SearchInput
               lable="行业"
-              value={search.class_name}
-              bindName="class_name"
+              value={search.industry}
+              bindName="industry"
             />
-             <SearchInput
-              lable="班级编号"
-              value={search.class_name}
-              bindName="class_name"
-            />
+
             <SAButton
               dispatch={dispatch}
               model={app.router.codeModel}

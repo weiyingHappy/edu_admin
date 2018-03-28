@@ -30,7 +30,7 @@ function ClassList({ dispatch, history, common, app }) {
     },
     {
       title: '班级人数',
-      dataIndex: 'persons',
+      dataIndex: 'class_person',
     },
     {
       title: '操作',

@@ -4,6 +4,7 @@ import { Row, Col, Button, message } from 'antd'
 import Mcard from '../../layouts/Mcard'
 import { SelectDataTable, SearchInput, SAButton } from '../../components/General'
 import { UpExcel } from '../../components/ModalToast'
+import { apiPrefix } from '../../utils/utils'
 class OrgantList extends React.PureComponent {
 
   // if (!app.init) {
@@ -41,10 +42,13 @@ class OrgantList extends React.PureComponent {
       uri: '/OrganManage/exportOrgan',
       data: data,
       callback: ({ results }) => {
-        console.log(222222222,results)
+        // this.setState({
+        //   url:results
+        // })
         this.setState({
-          url:results
+          selectedRowKeys: []
         })
+        window.open(`${apiPrefix()}/Admin/DownManage/downloadOrgan/${results}`, '_blank');
       }
     })
 
@@ -55,7 +59,6 @@ class OrgantList extends React.PureComponent {
     })
   }
   formSubmit = (e) => {
-    console.log(e)
     const { dispatch } = this.props
     var fd = new FormData(document.querySelector('#form'));
     dispatch({
@@ -154,7 +157,6 @@ class OrgantList extends React.PureComponent {
           </Row>
         </Mcard>
         <Mcard >
-          <a href={this.state.url} target="_blank">打开</a>
           <Button onClick={this.upExcel}>批量导入</Button>
           <Button onClick={() => this.someExport("1")} style={{ margin: '0 6px' }}>批量导出</Button>
           <Button type="primary" onClick={() => this.someExport("2")}>全部导出</Button>
