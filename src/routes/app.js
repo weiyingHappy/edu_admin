@@ -49,7 +49,7 @@ const App = ({ children, app, loading, location, dispatch }) => {
     }
   }
   return (
-    <div style={{height:'100%'}}>
+    <div style={{height:'100%',minWidth:'1200px'}}>
       <Loader fullScreen spinning={loading.effects['app/query']} />
       <Layout style={{height:'100%'}}>
         <Sider
