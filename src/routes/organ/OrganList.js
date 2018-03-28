@@ -13,7 +13,8 @@ class OrgantList extends React.PureComponent {
     selectedRowKeys: [],
     visible: false,
     batch_organ: null,
-    upVisible: false
+    upVisible: false,
+    url: ''
   }
   onSelectChange = (selectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
@@ -40,7 +41,10 @@ class OrgantList extends React.PureComponent {
       uri: '/OrganManage/exportOrgan',
       data: data,
       callback: ({ results }) => {
-        console.log(results)
+        console.log(222222222,results)
+        this.setState({
+          url:results
+        })
       }
     })
 
@@ -58,9 +62,9 @@ class OrgantList extends React.PureComponent {
       type: 'app/request',
       uri: '/OrganManage/batchOrgan',
       data: fd,
-      callback: ({ results }) => {
+      callback: (results) => {
         this.setState({
-          upVisible: false
+          upVisible: false,
         })
       },
     })
@@ -150,10 +154,11 @@ class OrgantList extends React.PureComponent {
           </Row>
         </Mcard>
         <Mcard >
+          <a href={this.state.url} target="_blank">打开</a>
           <Button onClick={this.upExcel}>批量导入</Button>
-          <Button onClick={() => this.someExport("1")} style={{margin:'0 6px'}}>批量导出</Button>
+          <Button onClick={() => this.someExport("1")} style={{ margin: '0 6px' }}>批量导出</Button>
           <Button type="primary" onClick={() => this.someExport("2")}>全部导出</Button>
-          <p>已选择<span style={{color:'red'}}>{selectedRowKeys.length}</span>条数据</p>
+          <p>已选择<span style={{ color: 'red' }}>{selectedRowKeys.length}</span>条数据</p>
           <SelectDataTable columns={columns} rowSelection={rowSelection} model={common} rowKey="id" />
           <UpExcel title="选择excel文件" dispatch={dispatch} uri="/OrganManage/batchOrgan" visible={this.state.upVisible} onCreate={this.formSubmit} onCancel={this.onCancel} />
         </Mcard>

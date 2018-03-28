@@ -106,7 +106,7 @@ class UserDetail extends React.PureComponent {
   render() {
     const { common, app } = this.props
     const { detail } = common
-    let tArr = this.parseBuyInfo()
+    const tArr = this.parseBuyInfo()
     const getBuyInfo = tArr.length ? tArr.map(item =>
       <Card style={{ marginBottom: '6px' }} key={item.msg} title={item.msg}
       // extra={<Popconfirm placement="topLeft" title={"确认移除吗"} onConfirm={() => {
@@ -171,7 +171,7 @@ class UserDetail extends React.PureComponent {
                   <Card key={item.type} title={item.type == 1 ? '优势测评' : '职业测评'}
                     extra={<div><Button type="primary" style={{ marginRight: '6px' }}
                       disabled={(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>查看测评报告</Button>
-                      {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/123/career`}>下载报告</a> : <span>测评未完成</span>}
+                      {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type==1?'via':'career'}`}>下载报告</a> : <span>测评未完成</span>}
                     </div>}>
                     <Row>
                       <Col span={8}>已完成：{item.count}道题目</Col>
