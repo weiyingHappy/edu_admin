@@ -126,7 +126,8 @@ function ClassDetail({ common, app, loading, history }) {
           <Col span={8}>班级名称：{detail.class_name}</Col>
           <Col span={8}>班级编号：{detail.id}</Col>
           <Col span={8}>学校名称：{detail.school ? detail.school.school_name : ''}</Col>
-          <Col span={8}>人数：{detail.persons}</Col>
+          <Col span={8}>学校编码：{detail.school ? detail.school.school_code : ''}</Col>
+          <Col span={8}>人数：{detail.class_person}</Col>
         </Row>
       </Mcard>
       <Mcard title="学生列表">
