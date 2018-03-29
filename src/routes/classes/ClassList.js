@@ -21,7 +21,7 @@ function ClassList({ dispatch, history, common, app }) {
       dataIndex: 'school_name',
     },
     {
-      title: '账号',
+      title: '班级编号',
       dataIndex: 'id',
     },
     {
