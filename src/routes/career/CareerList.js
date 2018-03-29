@@ -53,21 +53,21 @@ function CareerList({ dispatch, history, common, app }) {
           <Col span={12}>
             <SearchInput
               lable="职业名称"
-              value={search.class_name}
-              bindName="class_name"
+              value={search.name}
+              bindName="name"
             />
             <SearchInput
-              lable="职业区域"
-              value={search.class_name}
-              bindName="class_name"
+              lable="教育水平"
+              value={search.edu_level}
+              bindName="edu_level"
             />
 
           </Col>
           <Col span={12}>
             <SearchInput
               lable="职业编号"
-              value={search.class_id}
-              bindName="class_id"
+              value={search.code}
+              bindName="code"
             />
              <SearchInput
               lable="行业"

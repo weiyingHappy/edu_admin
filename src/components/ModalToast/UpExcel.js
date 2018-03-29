@@ -16,8 +16,18 @@ class UpExcel extends React.PureComponent {
           okText="确认"
           cancelText="取消"
           visible={visible}
-          onOk={onCreate}
-          onCancel={onCancel}
+          onOk={() => {
+            this.setState({
+              fileName: ''
+            })
+            onCreate()
+          }}
+          onCancel={() => {
+            this.setState({
+              fileName: ''
+            })
+            onCancel()
+          }}
         >
           <form id="form"
           >

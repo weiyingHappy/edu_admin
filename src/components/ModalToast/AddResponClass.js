@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form,  Modal, Select } from 'antd'
+import { Form, Modal, Select } from 'antd'
 import { connect } from 'dva'
 import { clearString } from '../../utils/convert'
 const FormItem = Form.Item
@@ -15,25 +15,40 @@ class ChangeBuyType extends React.PureComponent {
   handleFuncChange = (e) => {
     this.setState({ funcs: e })
   }
+  doResetState = (e) => {
+    this.setState({
+      scList: [],
+      school_id: '',
+      clasList: [],
+      school_code: '',
+      class_id: ''
+    })
+    this.props.form.resetFields()
+  }
+  componentWillMount() {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'app/request',
+      uri: "UserManage/listSchool",
+      data: { school_name: "" },
+      callback: (r) => {
+        this.setState({
+          scList: r.results
+        })
+      }
+    })
+  }
   handleChange = (e) => {
-    console.log(`selected ${e}`);
     const { scList } = this.state
     this.setState({
       school_id: e,
       school_code: scList.find(item => item.id == e).school_code
     })
+    this.doSomeQuest(e)
   }
 
-  handleBlur = () => {
-
-  }
-
-  handleFocus = () => {
-
-  }
   handleSearch = (e) => {
     const { dispatch } = this.props
-
     dispatch({
       type: `app/request`,
       uri: `UserManage/listSchool`,
@@ -46,26 +61,29 @@ class ChangeBuyType extends React.PureComponent {
       }
     })
   }
+
   handleClassChange = (e) => {
     this.setState({
       class_id: e
     })
   }
-  handleSearchClass = (e) => {
+  // 请求班级列表
+  doSomeQuest = (school_id, class_name = "") => {
     const { dispatch } = this.props
-
-    const { school_id } = this.state
     dispatch({
       type: `app/request`,
       uri: `UserManage/listClass`,
-      data: { school_id: school_id, class_name: e },
+      data: { school_id: school_id, class_name: class_name },
       callback: (r) => {
-
         this.setState({
           clasList: r.results
         })
       }
     })
+  }
+  handleSearchClass = (e = "") => {
+    const { school_id } = this.state
+    this.doSomeQuest(school_id, e)
   }
   render() {
     const { form, title, visible, onCreate, onCancel } = this.props
@@ -90,16 +108,13 @@ class ChangeBuyType extends React.PureComponent {
           visible={visible}
           onOk={() => {
             onCreate({ class_id: this.state.class_id })
-            this.setState({
-              scList: [],
-              school_id: '',
-              clasList: [],
-              school_code: '',
-              class_id: ''
-            })
+            this.doResetState()
           }
           }
-          onCancel={onCancel}
+          onCancel={() => {
+            this.doResetState()
+            onCancel()
+          }}
         >
           <FormItem {...formItemLayout} label="学校名称">
             {getFieldDecorator('school_name', {
@@ -110,11 +125,9 @@ class ChangeBuyType extends React.PureComponent {
               <Select
                 showSearch
                 style={{ width: 200 }}
-                placeholder="Select a person"
+                placeholder="请选择学校"
                 optionFilterProp="children"
                 onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
                 onSearch={this.handleSearch}
               >
                 {options}
@@ -134,6 +147,7 @@ class ChangeBuyType extends React.PureComponent {
                 showSearch
                 style={{ width: 200 }}
                 placeholder="请填入班级名称"
+                optionFilterProp="children"
                 onChange={this.handleClassChange}
                 onSearch={this.handleSearchClass}
               >

@@ -10,7 +10,8 @@ class UserDetail extends React.PureComponent {
 
   state = {
     visible: false,
-    buyvisible: false
+    buyvisible: false,
+    type: []
   }
   componentWillMount() {
     const { app, loading } = this.props
@@ -27,8 +28,17 @@ class UserDetail extends React.PureComponent {
     })
   }
   addBuyInfo = () => {
+    const { common } = this.props
+    const { detail } = common
+    let arr = []
+    let type = []
+    let obj = detail ? detail.order : {}
+    for (var key in obj) {
+      type.push(key == 'via' ? '1' : key == 'career' ? '2' : '')
+    }
     this.setState({
-      buyvisible: true
+      buyvisible: true,
+      type: type
     })
   }
 
@@ -161,14 +171,14 @@ class UserDetail extends React.PureComponent {
           }
           {detail.student_class ?
             <Mcard title="学校信息" >
-                <Card key={detail.student_class.id} style={{ marginBottom: '6px' }}>
-                  <Row>
-                    <Col span={8}>学校名称：{detail.student_class.school_name}</Col>
-                    <Col span={8}>学校编号：{detail.student_class.school_code}</Col>
-                    <Col span={8}>班级：{detail.student_class.class_name}</Col>
-                    <Col span={8}>班级编号：{detail.student_class.id}</Col>
-                  </Row>
-                </Card>
+              <Card key={detail.student_class.id} style={{ marginBottom: '6px' }}>
+                <Row>
+                  <Col span={8}>学校名称：{detail.student_class.school_name}</Col>
+                  <Col span={8}>学校编号：{detail.student_class.school_code}</Col>
+                  <Col span={8}>班级：{detail.student_class.class_name}</Col>
+                  <Col span={8}>班级编号：{detail.student_class.id}</Col>
+                </Row>
+              </Card>
             </Mcard> : ''
           }
 
@@ -181,10 +191,10 @@ class UserDetail extends React.PureComponent {
               {detail.answers.length ?
                 (detail.answers || []).map(item => (
                   <Card key={item.type} title={item.type == 1 ? '优势测评' : '职业测评'}
-                  style={{ marginBottom: '6px' }}
+                    style={{ marginBottom: '6px' }}
                     extra={<div><Button type="primary" style={{ marginRight: '6px' }}
                       disabled={(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>查看测评报告</Button>
-                      {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type==1?'via':'career'}`}>下载报告</a> : <span>测评未完成</span>}
+                      {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 1 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
                     </div>}>
                     <Row>
                       <Col span={8}>已完成：{item.count}道题目</Col>
@@ -205,7 +215,7 @@ class UserDetail extends React.PureComponent {
               </Row>
             </Mcard> : ''}
           <AddResponClass visible={this.state.visible} onCancel={this.onCancel} onCreate={this.onCreate} />
-          <AddBuyInfo visible={this.state.buyvisible} onCancel={this.onCancelBuy} userInfo={detail} onCreate={this.onCreateBuy} />
+          <AddBuyInfo visible={this.state.buyvisible} onCancel={this.onCancelBuy} userInfo={detail} type={this.state.type} onCreate={this.onCreateBuy} />
         </PageTitle>
         : ''
     )

@@ -19,7 +19,7 @@ function SchoolDetail({ common, app, loading }) {
       <Mcard title="基本信息">
         <Row>
           <Col span={8}>学校名称：{detail.school_name}</Col>
-          <Col span={8}>学校代码：{detail.school_code}</Col>
+          <Col span={8}>学校编码：{detail.school_code}</Col>
         </Row>
       </Mcard>
     </PageTitle>

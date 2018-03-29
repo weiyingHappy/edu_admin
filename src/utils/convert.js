@@ -13,6 +13,10 @@ export function covertUserType(type) {
 
 export const userType = [
   {
+    value: '-1',
+    name: '全部',
+  },
+  {
     value: '1',
     name: '游客',
   },
@@ -63,6 +67,10 @@ export const buyType = [
 ]
 
 export const wordsType = [
+  {
+    value: '-1',
+    name: '全部'
+  },
   {
     value: '1',
     name: '咨询类'

@@ -54,10 +54,10 @@ class SchoolAdd extends React.PureComponent {
               )}
             </FormItem>
 
-            <FormItem {...formItemLayout} label="学校代码">
+            <FormItem {...formItemLayout} label="学校编码">
               {getFieldDecorator('school_code', {
                 rules: [
-                  { required: true, message: '请填入学校代码' },
+                  { required: true, message: '请填入学校编码' },
                 ],
               })(
                 <Input />,

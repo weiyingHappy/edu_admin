@@ -109,18 +109,13 @@ class UserList extends React.PureComponent {
                 bindName="userID"
               />
               <SearchInput
-                lable="学校编码"
-                value={search.school_code}
-                bindName="school_code"
-              />
-
-            </Col>
-            <Col span={12}>
-              <SearchInput
                 lable="班级名称"
                 value={search.class_name}
                 bindName="class_name"
               />
+            </Col>
+            <Col span={12}>
+
               <SearchSelect
                 lable="角色"
                 options={userType}
@@ -153,7 +148,7 @@ class UserList extends React.PureComponent {
           <SelectDataTable rowKey="id" rowSelection={rowSelection} columns={columns} model={common} />
           批量修改暂时不做
           */}
-          <DataTable rowKey="id" columns={columns} model={common}/>
+          <DataTable rowKey="id" columns={columns} model={common} />
         </Mcard>
       </div>
     )

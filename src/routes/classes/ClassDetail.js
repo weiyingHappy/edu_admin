@@ -3,7 +3,8 @@ import { Row, Col } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
 import { SelfDataTable } from '../../components/General'
-function ClassDetail({ common, app, loading,history }) {
+import { apiPrefix } from '../../utils/utils'
+function ClassDetail({ common, app, loading, history }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -14,7 +15,59 @@ function ClassDetail({ common, app, loading,history }) {
   }
 
   const { detail } = common
-  const columns = [
+  const sColumns = [
+    {
+      title: '姓名',
+      dataIndex: 'name',
+    },
+    {
+      title: '账号',
+      dataIndex: 'userID',
+    },
+    {
+      title: '班级',
+      dataIndex: 'class_name',
+    },
+
+    {
+      title: '联系方式',
+      render: (r) => (
+        r.phone ? r.phone : r.email
+      )
+    },
+    {
+      title: '优势测评', //职业测评第一位，优势测评第二位
+      render: (r) => (
+        <span>{(r.buy_profile)[1] == 1 ? '已完成' : '未完成'}</span>
+      )
+    },
+    {
+      title: '职业测评',
+      render: (r) => (
+        <span>{(r.buy_profile)[0] == 1 ? '已完成' : '未完成'}</span>
+      )
+    },
+    {
+      title: '操作',
+      render(record) {
+        return (
+          <div>
+            {(record.buy_profile)[0] == 1 ?
+              <a style={{ marginRight: '6px' }} target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${record.userID}/career`}>下载职业测评报告</a>
+              : ''}
+            {(record.buy_profile)[1] == 1 ?
+              <a style={{ marginRight: '6px' }} target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${record.userID}/via`}>下载优势测评报告</a>
+              : ''}
+            <span onClick={() => { history.push(`/user/detail/${record.userID}`) }} >
+              查看详情
+            </span>
+          </div>
+        )
+      },
+    },
+
+  ]
+  const tColumns = [
     {
       title: '姓名',
       dataIndex: 'name',
@@ -36,14 +89,28 @@ function ClassDetail({ common, app, loading,history }) {
     },
     {
       title: '优势测评',
-      dataIndex: 'buy_profile',
+      render: (r) => (
+        <span>{(r.buy_profile)[1] ? '已完成' : '未完成'}</span>
+      )
+    },
+    {
+      title: '职业测评',
+      render: (r) => (
+        <span>{(r.buy_profile)[0] ? '已完成' : '未完成'}</span>
+      )
     },
     {
       title: '操作',
       render(record) {
         return (
           <div>
-            <span onClick={() => { history.push(`/user/detail/${record.id}`) }} >
+            {(record.buy_profile)[0] == 1 ?
+              <a style={{ marginRight: '6px' }} target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${record.userID}/career`}>下载职业测评报告</a>
+              : ''}
+            {(record.buy_profile)[1] == 1 ?
+              <a style={{ marginRight: '6px' }} target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${record.userID}/via`}>下载优势测评报告</a>
+              : ''}
+            <span onClick={() => { history.push(`/user/detail/${record.userID}`) }} >
               查看详情
             </span>
           </div>
@@ -52,7 +119,6 @@ function ClassDetail({ common, app, loading,history }) {
     },
 
   ]
-
   return (
     <PageTitle router={app.router} title="班级详情">
       <Mcard title="基本信息">
@@ -64,10 +130,10 @@ function ClassDetail({ common, app, loading,history }) {
         </Row>
       </Mcard>
       <Mcard title="学生列表">
-        <SelfDataTable columns={columns} url="ClassManage/listStudent" params={{ class_id: detail.id }} rowKey="id" />
+        <SelfDataTable columns={sColumns} url="ClassManage/listStudent" params={{ class_id: detail.id }} rowKey="id" />
       </Mcard>
       <Mcard title="教师列表">
-        <SelfDataTable columns={columns} url="ClassManage/listTeacher" params={{ class_id: detail.id }} rowKey="id" />
+        <SelfDataTable columns={tColumns} url="ClassManage/listTeacher" params={{ class_id: detail.id }} rowKey="id" />
       </Mcard>
     </PageTitle>
   )

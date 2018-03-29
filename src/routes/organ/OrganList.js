@@ -42,9 +42,6 @@ class OrgantList extends React.PureComponent {
       uri: '/OrganManage/exportOrgan',
       data: data,
       callback: ({ results }) => {
-        // this.setState({
-        //   url:results
-        // })
         this.setState({
           selectedRowKeys: []
         })
@@ -59,20 +56,23 @@ class OrgantList extends React.PureComponent {
     })
   }
   formSubmit = (e) => {
-    const { dispatch } = this.props
+    const { dispatch, history, app } = this.props
     var fd = new FormData(document.querySelector('#form'));
     dispatch({
       type: 'app/request',
       uri: '/OrganManage/batchOrgan',
       data: fd,
       callback: (results) => {
+        document.getElementById("form").reset()
         this.setState({
-          upVisible: false,
+          upVisible:false
         })
+        history.push(`/${app.router.model}/list/1`)
       },
     })
   }
   onCancel = () => {
+    document.getElementById("form").reset()
     this.setState({
       upVisible: false
     })

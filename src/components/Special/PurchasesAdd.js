@@ -8,7 +8,7 @@ import styles from './index.less'
 
 class PurchasesAdd extends React.PureComponent {
   render() {
-    const { onChange ,type} = this.props
+    const { onChange ,type = []} = this.props
     if (testType === null) {
       return <Spin />
     }
@@ -18,7 +18,7 @@ class PurchasesAdd extends React.PureComponent {
           <Row>
             {
               testType.map((item) => {
-                return <Col key={item.name} className={styles.checkbox} span={8} ><Checkbox value={item.value} disabled={ type == item.value}>{item.name}</Checkbox></Col>
+                return <Col key={item.name} className={styles.checkbox} span={8} ><Checkbox value={item.value} disabled={ type.includes(item.value)}>{item.name}</Checkbox></Col>
               })
             }
           </Row>

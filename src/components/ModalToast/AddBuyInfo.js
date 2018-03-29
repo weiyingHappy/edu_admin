@@ -16,7 +16,7 @@ class ChangeBuyType extends React.PureComponent {
     this.setState({ funcs: e })
   }
   render() {
-    const { title,  visible, onCreate, onCancel, userInfo } = this.props
+    const { title, visible, onCreate, onCancel, userInfo, type = [] } = this.props
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 16 },
@@ -31,12 +31,19 @@ class ChangeBuyType extends React.PureComponent {
           visible={visible}
           onOk={() => {
             onCreate(this.state)
-           }
           }
-          onCancel={onCancel}
+          }
+          onCancel={() => {
+            this.setState({
+              funcs: null,
+              buy_type: '',
+              order_no: ''
+            })
+            onCancel()
+          }}
         >
           <FormItem {...formItemLayout} label="确认购买项目：">
-            <PurchasesAdd type={userInfo.order} onChange={this.handleFuncChange} />
+            <PurchasesAdd type={type} onChange={this.handleFuncChange} />
           </FormItem>
           <FormItem {...formItemLayout} label="确认购买信息：">
             <span>{userInfo.name}</span>&nbsp;&nbsp;<span>{userInfo.userID}</span>
