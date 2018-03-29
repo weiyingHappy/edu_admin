@@ -190,15 +190,15 @@ class UserDetail extends React.PureComponent {
             <Mcard title="测评信息">
               {detail.answers.length ?
                 (detail.answers || []).map(item => (
-                  <Card key={item.type} title={item.type == 1 ? '优势测评' : '职业测评'}
+                  <Card key={item.type} title={item.type == 2 ? '优势测评' : '职业测评'}
                     style={{ marginBottom: '6px' }}
                     extra={<div><Button type="primary" style={{ marginRight: '6px' }}
-                      disabled={(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>查看测评报告</Button>
+                      disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>查看测评报告</Button>
                       {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 1 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
                     </div>}>
                     <Row>
                       <Col span={8}>已完成：{item.count}道题目</Col>
-                      <Col span={8}>测试进度：<Progress style={{ width: '120px' }} percent={(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)).toFixed(2) * 100} size="small" /></Col>
+                      <Col span={8}>测试进度：<Progress style={{ width: '120px' }} percent={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)).toFixed(2) * 100} size="small" /></Col>
                       <Col span={8}>最近测试时间：{item.last_modify_time}</Col>
                     </Row>
                   </Card>

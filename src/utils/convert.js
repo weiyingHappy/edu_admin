@@ -37,11 +37,11 @@ export const userType = [
 export const testType = [
   {
     value: '1',
-    name: '优势测评'
+    name: '职业测评'
   },
   {
     value: '2',
-    name: '职业测评'
+    name: '优势测评'
   },
 ]
 export function covertBuyType(type) {

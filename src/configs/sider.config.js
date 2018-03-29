@@ -9,7 +9,7 @@ module.exports = {
     {
       id: '2',
       name: '学校管理',
-      icon: 'contacts',
+      icon: 'idcard',
       route: '/school/list/1'
     },
     // {
@@ -21,24 +21,24 @@ module.exports = {
     {
       id: '4',
       name: '班级管理',
-      icon: 'solution',
+      icon: 'usergroup-add',
       route: '/class/list/1'
     },
     {
       id: '5',
       name: '职业测评管理',
-      icon: 'solution',
+      icon: 'dot-chart',
       sub: [
         {
           id: "5_1",
           name: '职业管理',
-          icon: 'solution',
+          icon: 'database',
           route: '/career/list/1'
         },
         {
           id: "5_2",
           name: '学科管理',
-          icon: 'solution',
+          icon: 'book',
           route: '/subject/list/1'
         }
       ]
@@ -46,13 +46,13 @@ module.exports = {
     {
       id: '6',
       name: '留言管理',
-      icon: 'solution',
+      icon: 'profile',
       route: '/message/list/1'
     },
     {
       id: '7',
       name: '订单管理',
-      icon: 'solution',
+      icon: 'shopping-cart',
       route: '/organ/list/1'
     },
   ],
