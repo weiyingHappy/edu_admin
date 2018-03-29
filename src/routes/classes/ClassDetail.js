@@ -90,13 +90,13 @@ function ClassDetail({ common, app, loading, history }) {
     {
       title: '优势测评',
       render: (r) => (
-        <span>{(r.buy_profile)[1] ? '已完成' : '未完成'}</span>
+        <span>{(r.buy_profile)[1] == 1 ? '已完成' : '未完成'}</span>
       )
     },
     {
       title: '职业测评',
       render: (r) => (
-        <span>{(r.buy_profile)[0] ? '已完成' : '未完成'}</span>
+        <span>{(r.buy_profile)[0] == 1 ? '已完成' : '未完成'}</span>
       )
     },
     {
