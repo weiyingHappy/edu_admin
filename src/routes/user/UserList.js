@@ -51,9 +51,8 @@ class UserList extends React.PureComponent {
       },
       {
         title: '班级编号',
-        dataIndex: 'class_id',
         render: (r) => (
-          r ? r : '---'
+          r.roles_id ==2 || r.roles_id ==3 ? r.class_id : '---'
         )
       },
       {
