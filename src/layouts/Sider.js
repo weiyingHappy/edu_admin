@@ -89,9 +89,9 @@ class Sider extends React.PureComponent {
         <div className={styles.logo} key="logo">
           {this.props.siderFold
             ?
-            '酷'
+            '优想'
             :
-            <img alt="logo" src="http://ov2ek9bbx.bkt.clouddn.com/FoZHpC67Opsur5D-19AbAc2R7OR_" />
+            <img alt="logo" src="http://47.100.46.51/logo.png" />
           }
         </div>
         <Menu
