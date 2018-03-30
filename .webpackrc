@@ -13,7 +13,7 @@
   },
   "ignoreMomentLocale": true,
   "theme": "./src/configs/theme.config.js",
-  "publicPath": "/edu_admin",
+  "publicPath": "/edu_admin/",
   "disableDynamicImport": true,
   "html": {
     "template": "./src/index.ejs"
