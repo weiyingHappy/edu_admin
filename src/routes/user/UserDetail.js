@@ -96,6 +96,13 @@ class UserDetail extends React.PureComponent {
       buyvisible: false
     })
   }
+
+  lookReport = (e, uid) => {
+    let a = document.createElement('a')
+    a.setAttribute('href', `/edu_admin/#/testresult/${e}/${uid}`)
+    a.click()
+
+  }
   //重组下数据
   parseBuyInfo = (e) => {
     const { common } = this.props
@@ -195,12 +202,9 @@ class UserDetail extends React.PureComponent {
                       <Button
                         type="primary"
                         style={{ marginRight: '6px' }}
+                        onClick={() => this.lookReport(item.type == 1 ? 'onlineCareer' : 'onlineVia', detail.userID)}
                         disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>
-                        <a
-                          href={`${apiPrefix()}/Admin/Advantage/${item.type == 1 ? 'onlineCareer' : 'onlineVia'}/${detail.userID}`} target="_blank"
-                        >
-                          查看测评报告
-                        </a>
+                        查看测评报告
                       </Button>
                       {(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 2 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
                     </div>}>
