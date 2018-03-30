@@ -5,17 +5,18 @@ import { connect } from 'dva'
 import cs from './index.less'
 
 function SearchSelect({ dispatch, router, lable, bindName, options, value, nocolon }) {
+  console.log('v',value)
   return (
     <div className={cs.searchItem}>
       <span className={cs.lable}>{lable}{nocolon || '：'}</span>
       <span className={cs.input}>
         <Select className={cs.select}
-          defaultValue={value || '-1'}
+          value={value || '-1'}
           onChange={(val) => {
             const payload = {}
             payload[bindName] = val
             dispatch({
-              type: `${router.model}/changeSearch`,
+              type: `${router.codeModel}/changeSearch`,
               payload: { ...payload },
             })
           }}

@@ -22,10 +22,8 @@ module.exports = {
     },
     school: {
       model: 'school',
-      folder: 'user',
-      noadd: true,
       lazy: true,
-      cus: 'UserManage',
+      cus: 'SchoolManage',
     },
     member: {
       model: 'member',
@@ -39,5 +37,37 @@ module.exports = {
       lazy: true,
       cus: 'Admin',
     },
+    class: {
+      model: 'class',
+      folder: 'classes',
+      lazy: true,
+      cus: 'ClassManage'
+    },
+    career: {
+      model: 'career',
+      noadd: true,
+      lazy: true,
+      cus: 'CareerManage'
+    },
+    subject: {
+      model: 'subject',
+      folder: 'profession',
+      noadd: true,
+      lazy: true,
+      cus: 'ClassManage'
+    },
+    message: {
+      model: 'message',
+      noadd: true,
+      lazy: true,
+      cus: 'MessageManage'
+    },
+    organ: {
+      model: 'organ',
+      noadd: true,
+      nodetail: true,
+      lazy: true,
+      cus: 'OrganManage'
+    }
   },
 }

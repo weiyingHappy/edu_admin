@@ -11,8 +11,9 @@ const fetch = (options) => {
     timeout: 20000,
     headers: { 'session-token': token },
   })
-
+  console.log('url',url)
   switch (method.toLowerCase()) {
+
     case 'get':
       return axo.get(url)
     case 'post':

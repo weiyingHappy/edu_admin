@@ -116,3 +116,4 @@ MultiUpFile.defaultProps = {
 }
 
 export default MultiUpFile
+

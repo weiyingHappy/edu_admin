@@ -5,6 +5,7 @@ import ExportButton from './ActionButton/ExportButton'
 
 import DataTable from './DataTable/DataTable'
 import SelfDataTable from './DataTable/SelfDataTable'
+import SelectDataTable from './DataTable/SelectDataTable'
 
 import EditableInput from './Editables/EditableInput'
 import EditableImage from './Editables/EditableImage'
@@ -28,6 +29,7 @@ export {
 
   DataTable, // 数据列表显示，自动分页和显示
   SelfDataTable, // 指定一个接口地址，实现自我请求的表格控件
+  SelectDataTable, //可以选择表格里某项的控件
 
   EditableInput, // 可编辑的输入框
   EditableImage, // 可编辑图片列表

@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Icon, Layout } from 'antd'
 import { menus, openkeys } from '../configs/sider.config'
 import { Link } from 'dva/router'
+import * as logo from '../assets/img/logo.png'
 import styles from './index.less'
 
 class Sider extends React.PureComponent {
@@ -37,6 +38,7 @@ class Sider extends React.PureComponent {
           // 通过检验，渲染菜单
           if (item.sub && item.sub.length > 0) {
             // let t_menu =
+            //不需要权限或者（需要权限但登录的账号有该权限）
             const sub = item.sub.filter((subItem) => {
               return subItem.fid === null || subItem.fid == undefined || this.props.user.funcs.includes(subItem.fid)
             })
@@ -88,9 +90,9 @@ class Sider extends React.PureComponent {
         <div className={styles.logo} key="logo">
           {this.props.siderFold
             ?
-            '酷'
+            '优想'
             :
-            <img alt="logo" src="http://ov2ek9bbx.bkt.clouddn.com/FoZHpC67Opsur5D-19AbAc2R7OR_" />
+            <img alt="logo" src={logo} />
           }
         </div>
         <Menu

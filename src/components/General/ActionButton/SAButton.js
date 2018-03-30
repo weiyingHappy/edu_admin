@@ -5,7 +5,7 @@ import cs from './index.less'
 
 function SAButton({ dispatch, sureName, model, search }) {
   return (
-    <span style={{ display: 'inline-block', paddingLeft: '16%', height: 40 }} className={cs.sabutton}>
+    <span style={{ display: 'inline-block', paddingLeft: '24%', height: 40 }} className={cs.sabutton}>
       <Button
         style={{ marginRight: 20 }}
         onClick={() => {
