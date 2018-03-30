@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Icon, Layout } from 'antd'
 import { menus, openkeys } from '../configs/sider.config'
 import { Link } from 'dva/router'
+import * as logo from '../assets/img/logo.png'
 import styles from './index.less'
 
 class Sider extends React.PureComponent {
@@ -91,7 +92,7 @@ class Sider extends React.PureComponent {
             ?
             '优想'
             :
-            <img alt="logo" src="http://47.100.46.51/logo.png" />
+            <img alt="logo" src={logo} />
           }
         </div>
         <Menu
