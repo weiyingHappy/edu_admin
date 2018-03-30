@@ -26,6 +26,11 @@ function RouterConfig({ history, app }) {
       models: () => [],
       component: () => import('./routes/admin/My'),
     },
+    {
+      path: '/testresult/:type/:uid',
+      models: () => [],
+      component: () => import('./routes/admin/TestResult'),
+    },
   ]
 
   // 根据配置自动生成路由和model
