@@ -67,7 +67,8 @@ const hldConfig = {
 class TestResult extends React.Component {
   state = {
     results: null,
-    HLD: []
+    HLD: [],
+    listIndustry: []
   }
   componentWillMount() {
     const { dispatch, location } = this.props
@@ -94,6 +95,16 @@ class TestResult extends React.Component {
         })
       }
     })
+    dispatch({
+      type: 'app/request',
+      uri: '/CareerManage/listIndustry',
+      callback: ({ results }) => {
+        this.setState({
+          listIndustry: results
+        })
+      }
+    })
+
   }
   switchAns(id, ans) {
     let { dispatch, test } = this.props
@@ -130,7 +141,7 @@ class TestResult extends React.Component {
   }
   render() {
     const { app, loading, dispatch } = this.props
-    const { results, HLD } = this.state
+    const { results, HLD, listIndustry } = this.state
     const result = results ? results.result : []
     const lists = result
     console.log('list', lists)
@@ -176,7 +187,7 @@ class TestResult extends React.Component {
           </h1>
           <div className={style.code}>
             {
-               renderList(HLD.slice(3, 6), (i, k) => (
+              renderList(HLD.slice(3, 6), (i, k) => (
                 <div className={style.codeItem} key={k}>
                   <Progress
                     type="circle"
@@ -265,7 +276,9 @@ class TestResult extends React.Component {
               {
                 title: '所属行业',
                 dataIndex: 'industry_id',
-                // render: (text) => listIndustry[text],
+                render: (text) => (
+                  <span>{listIndustry.find(item => item.id == text) ? listIndustry.find(item => item.id == text).industries_name : ''}</span>
+                ),
                 width: '70pt'
               },
               {
