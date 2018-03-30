@@ -28,20 +28,25 @@ function CareerDetail({ common, app, loading, history }) {
         <p>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</p>
       </Mcard>
       <Mcard title="日常工作">
-        <p>嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</p>
+        {detail.daily ?
+          (detail.daily || []).map((item, i) => (
+            <p key={i}>{i + 1}、{item}</p>
+          ))
+          : ''
+        }
       </Mcard>
       <Mcard title="工作特点">
         {detail.feature ?
-          (detail.feature || []).map((item,i)=> (
-            <p>{i+1}、{item.class}------{item.desc}</p>
+          (detail.feature || []).map((item, i) => (
+            <p key={i}>{i + 1}、{item.class}------{item.desc}</p>
           ))
           : ''
         }
       </Mcard>
       <Mcard title="知识要求">
         {detail.knowledge ?
-          (detail.knowledge || []).map((item,i) => (
-            <p>{i+1}、{item.class}------{item.desc}</p>
+          (detail.knowledge || []).map((item, i) => (
+            <p key={i}>{i + 1}、{item.class}------{item.desc}</p>
           ))
           : ''
         }

@@ -30,11 +30,10 @@ class UserDetail extends React.PureComponent {
   addBuyInfo = () => {
     const { common } = this.props
     const { detail } = common
-    let arr = []
     let type = []
     let obj = detail ? detail.order : {}
     for (var key in obj) {
-      type.push(key == 'via' ? '1' : key == 'career' ? '2' : '')
+      type.push(key == 'career' ? '1' : key == 'via' ? '2' : '')
     }
     this.setState({
       buyvisible: true,
@@ -69,14 +68,13 @@ class UserDetail extends React.PureComponent {
     }
     let tmp = Object.assign({}, e)
     if (e.funcs.includes('1')) {
-      tmp['via'] = 1
+      tmp['career'] = 1
     }
     if (e.funcs.includes('2')) {
-      tmp['career'] = 1
+      tmp['via'] = 1
     }
     tmp['userID'] = detail.userID
     delete tmp.funcs
-    console.log(tmp, e)
     dispatch({
       type: 'app/request',
       uri: 'UserManage/editAssessment',
@@ -108,7 +106,7 @@ class UserDetail extends React.PureComponent {
       let tmp = {}
       tmp = JSON.parse(JSON.stringify(obj[key]))
       tmp.msg = key == 'via' ? '优势测评' : key == 'career' ? '职业测评' : ''
-      tmp.test = key == 'via' ? '1' : key == 'career' ? '2' : '' //增加一个字段test，代表测评类型
+      tmp.test = key == 'career' ? '1' : key == 'via' ? '2' : '' //增加一个字段test，代表测评类型
       arr.push(tmp)
     }
     return arr
@@ -194,7 +192,7 @@ class UserDetail extends React.PureComponent {
                     style={{ marginBottom: '6px' }}
                     extra={<div><Button type="primary" style={{ marginRight: '6px' }}
                       disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>查看测评报告</Button>
-                      {(item.count / (item.type == 1 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 1 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
+                      {(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 1 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
                     </div>}>
                     <Row>
                       <Col span={8}>已完成：{item.count}道题目</Col>

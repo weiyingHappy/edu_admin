@@ -12,6 +12,12 @@ class My extends React.Component {
     newpwd: null,
     newpwd2: null,
   }
+  componentWillMount(){
+    const {dispatch} = this.props
+    dispatch({
+      type:'app/query'
+    })
+  }
   render() {
     const { app, loading, dispatch } = this.props
     const { edit } = this.state
