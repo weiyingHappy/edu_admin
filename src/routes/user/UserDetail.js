@@ -155,7 +155,7 @@ class UserDetail extends React.PureComponent {
           </Mcard>
           {detail.roles_id == 3 ?
             <Mcard title="学校信息" extra={<Button type="primary" onClick={this.addClass}>新增负责班级</Button>}>
-              {(detail.class || []).map(item => (
+              {detail.class ? (detail.class || []).map(item => (
                 <Card key={item.id} style={{ marginBottom: '6px' }}>
                   <Row>
                     <Col span={8}>学校名称：{item.school_name}</Col>
@@ -164,19 +164,20 @@ class UserDetail extends React.PureComponent {
                     <Col span={8}>班级编号：{item.id}</Col>
                   </Row>
                 </Card>
-              ))}
+              )) : '暂无信息'}
             </Mcard> : ''
           }
-          {detail.student_class ?
+          {detail.roles_id == 2 ?
             <Mcard title="学校信息" >
-              <Card key={detail.student_class.id} style={{ marginBottom: '6px' }}>
+              {detail.student_class ? <Card key={detail.student_class.id} style={{ marginBottom: '6px' }}>
                 <Row>
                   <Col span={8}>学校名称：{detail.student_class.school_name}</Col>
                   <Col span={8}>学校编号：{detail.student_class.school_code}</Col>
                   <Col span={8}>班级：{detail.student_class.class_name}</Col>
                   <Col span={8}>班级编号：{detail.student_class.id}</Col>
                 </Row>
-              </Card>
+              </Card> : '暂无信息'}
+
             </Mcard> : ''
           }
 
@@ -196,9 +197,9 @@ class UserDetail extends React.PureComponent {
                         style={{ marginRight: '6px' }}
                         disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>
                         <a
-                        href={`${apiPrefix()}/Admin/Advantage/${item.type == 1 ? 'onlineCareer' : 'onlineVia'}/${detail.userID}`} target="_blank"
+                          href={`${apiPrefix()}/Admin/Advantage/${item.type == 1 ? 'onlineCareer' : 'onlineVia'}/${detail.userID}`} target="_blank"
                         >
-                        查看测评报告
+                          查看测评报告
                         </a>
                       </Button>
                       {(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 2 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
@@ -212,14 +213,14 @@ class UserDetail extends React.PureComponent {
                 )) : '暂无信息'}
             </Mcard> : ''}
 
-          {detail.parent ?
+          {detail.roles_id == 2 ?
             <Mcard title="家属信息">
-              <Row>
+              {detail.parent ? <Row>
                 <Col span={8}>账号：{detail.parent.userID}</Col>
                 <Col span={8}>手机：{detail.parent.phone}</Col>
                 <Col span={8}>姓名：{detail.parent.name}</Col>
                 <Col span={8}>角色：{covertUserType(detail.parent.roles_id)}</Col>
-              </Row>
+              </Row> : '暂无信息'}
             </Mcard> : ''}
           <AddResponClass visible={this.state.visible} onCancel={this.onCancel} onCreate={this.onCreate} />
           <AddBuyInfo visible={this.state.buyvisible} onCancel={this.onCancelBuy} userInfo={detail} type={this.state.type} onCreate={this.onCreateBuy} />
