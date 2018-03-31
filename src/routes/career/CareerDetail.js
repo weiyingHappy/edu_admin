@@ -18,10 +18,10 @@ function CareerDetail({ common, app, loading, history }) {
     <PageTitle router={app.router} title="职业详情">
       <Mcard title="基本信息">
         <Row>
-          <Col span={8}>职业编号：{detail.class_name}</Col>
-          <Col span={8}>职业评级：{detail.id}</Col>
-          <Col span={8}>学校名称：{detail.school ? detail.school.school_name : ''}</Col>
-          <Col span={8}>人数：{detail.persons}</Col>
+          <Col span={8}>职业编号：{detail.code}</Col>
+          <Col span={8}>职业名称：{detail.name}</Col>
+          {/* <Col span={8}>职业评级：{detail.id}</Col> */}
+          <Col span={8}>教育水平等级：{detail.edu_level}</Col>
         </Row>
       </Mcard>
       <Mcard title="职业定义">
@@ -62,7 +62,7 @@ function CareerDetail({ common, app, loading, history }) {
       <Mcard title="国内专业">
         {detail.related_major ?
           (detail.related_major || []).map((item, i) => (
-            <p key={i}>{i + 1}、{item}</p>
+            <p key={i}>{i + 1}、{item.name}</p>
           ))
           : '暂无'
         }
@@ -70,16 +70,14 @@ function CareerDetail({ common, app, loading, history }) {
       <Mcard title="国外专业">
         {detail.related_major_foreign ?
           (detail.related_major_foreign || []).map((item, i) => (
-            <p key={i}>{i + 1}、{item}</p>
+            <p key={i}>{i + 1}、{item.name}</p>
           ))
           : '暂无'
         }
       </Mcard>
       <Mcard title="建议实践活动">
         {detail.high_school ?
-          (detail.high_school || []).map((item, i) => (
-            <p key={i}>{i + 1}、{item}</p>
-          ))
+          <p >{detail.high_school}</p>
           : '暂无'
         }
       </Mcard>
