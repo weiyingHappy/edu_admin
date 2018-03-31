@@ -1,8 +1,17 @@
 import React from 'react'
 import { connect } from 'dva'
-import { message, Progress, Table, Icon } from 'antd'
+import { message, Progress, Table, Icon, Slider, Select, Radio, Form, Row, Col } from 'antd'
 import { renderList } from '../../utils/tool'
 import style from './index.less'
+
+const Option = Select.Option
+const FormItem = Form.Item
+const RadioGroup = Radio.Group;
+const formItemLayout = {
+  labelCol: { span: 24 },
+  wrapperCol: { span: 24 },
+  hasFeedback: true,
+}
 
 const hldConfig = {
   Artistic: {
@@ -68,12 +77,15 @@ class TestResult extends React.Component {
   state = {
     results: null,
     HLD: [],
-    listIndustry: []
+    listIndustry: [],
+    level: [1, 5],
+    stem: 0,
+    lists: [],
+    industry: '-1'
   }
   componentWillMount() {
     const { dispatch, location } = this.props
     const { pathname } = location
-    console.log('555', pathname)
     const parm = pathname.split('/')
     const uri = `ReportManage/${parm[2]}/${parm[3]}`
     dispatch({
@@ -91,6 +103,7 @@ class TestResult extends React.Component {
         HLD.sort((a, b) => a.point - b.point)
         this.setState({
           results: results,
+          lists: results ? results.result : [],
           HLD: HLD
         })
       }
@@ -105,6 +118,38 @@ class TestResult extends React.Component {
       }
     })
 
+  }
+  levelChange = (e) => {
+    this.setState({
+      level: e
+    })
+    this.filteringItem(1, e)
+  }
+  industryChange = (e) => {
+    this.setState({
+      industry: e
+    })
+    this.filteringItem(2, e)
+  }
+  stemChange = (e) => {
+    this.setState({
+      stem: e.target.value
+    })
+    this.filteringItem(3, e.target.value)
+  }
+  filteringItem = (type, v) => {
+    const { level, stem, industry, results } = this.state
+    const tlevel = type == 1 ? v : level
+    const tindustry = type == 2 ? v : industry
+    const tstem = type == 3 ? v : stem
+    const list = (results.result || []).filter(item => {
+      if (item.stem == tstem &&
+        (item.edu_level > tlevel[0] || item.edu_level == tlevel[0]) && (item.edu_level < tlevel[1] || item.edu_level == tlevel[1]) &&
+        (tindustry != '-1' ? item.industry_id == tindustry : true)) { return item }
+    })
+    this.setState({
+      lists: list
+    })
   }
   switchAns(id, ans) {
     let { dispatch, test } = this.props
@@ -141,10 +186,7 @@ class TestResult extends React.Component {
   }
   render() {
     const { app, loading, dispatch } = this.props
-    const { results, HLD, listIndustry } = this.state
-    const result = results ? results.result : []
-    const lists = result
-    console.log('list', lists)
+    const { lists, HLD, listIndustry } = this.state
     return (
       <div className={style.report}>
         <div className={style.case}>
@@ -247,6 +289,29 @@ class TestResult extends React.Component {
           <h1 className={style.b_title}>
             <span >相关职业推荐</span>
           </h1>
+          <Row>
+            <Col span={6}>
+              <FormItem {...formItemLayout} label="教育水平等级">
+                <Slider range defaultValue={[1, 5]} max={5} min={1} style={{ width: '100px' }} onChange={this.levelChange} />
+              </FormItem>
+            </Col>
+            <Col span={12}>
+              <FormItem {...formItemLayout} label="所属行业">
+                <Select style={{ width: '200px' }} onChange={this.industryChange}>
+                  <Option value={'-1'} key="-1">全部</Option>
+                  {(listIndustry || []).map(item => (<Option value={item.id} key={item.id}>{item.industries_name}</Option>))}
+                </Select>
+              </FormItem>
+            </Col>
+            <Col span={6}>
+              <FormItem {...formItemLayout} label="STEM">
+                <RadioGroup onChange={this.stemChange} defaultValue={'0'} >
+                  <Radio value={'1'}>是</Radio>
+                  <Radio value={'0'}>否</Radio>
+                </RadioGroup>
+              </FormItem>
+            </Col>
+          </Row>
           <Table
             style={{ marginTop: '15pt' }}
             columns={[

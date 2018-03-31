@@ -5,7 +5,7 @@ import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
 import { DataTable, SearchInput, SAButton } from '../../components/General'
 
-function SubjectList({ dispatch, history, common, app }) {
+function InlandSubjectList({ dispatch, history, common, app }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -14,19 +14,19 @@ function SubjectList({ dispatch, history, common, app }) {
   const columns = [
     {
       title: '学科名称',
-      dataIndex: 'class_name',
+      dataIndex: 'name',
     },
     {
       title: '学科编号',
-      dataIndex: 'school_name',
-    },
-    {
-      title: '专业代码',
       dataIndex: 'id',
     },
     {
+      title: '专业代码',
+      dataIndex: 'code',
+    },
+    {
       title: '门类',
-      dataIndex: 'create_time',
+      dataIndex: 'category',
     },
     {
       title: '操作',
@@ -49,25 +49,25 @@ function SubjectList({ dispatch, history, common, app }) {
           <Col span={12}>
             <SearchInput
               lable="学科名称"
-              value={search.class_name}
-              bindName="class_name"
+              value={search.name}
+              bindName="name"
             />
             <SearchInput
               lable="专业代码"
-              value={search.class_name}
-              bindName="class_name"
+              value={search.code}
+              bindName="code"
             />
           </Col>
           <Col span={12}>
             <SearchInput
               lable="学科编号"
-              value={search.class_id}
-              bindName="class_id"
+              value={search.id}
+              bindName="id"
             />
              <SearchInput
               lable="门类"
-              value={search.class_name}
-              bindName="class_name"
+              value={search.category}
+              bindName="category"
             />
             <SAButton
               dispatch={dispatch}
@@ -89,4 +89,4 @@ function mapStateToProps({ app, common }) {
   return { common, app }
 }
 
-export default connect(mapStateToProps)(SubjectList)
+export default connect(mapStateToProps)(InlandSubjectList)

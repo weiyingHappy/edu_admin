@@ -49,12 +49,12 @@ module.exports = {
       lazy: true,
       cus: 'CareerManage'
     },
-    subject: {
-      model: 'subject',
-      folder: 'profession',
+    inlandSubject: {
+      model: 'inlandSubject',
+      folder: 'career',
       noadd: true,
       lazy: true,
-      cus: 'ClassManage'
+      cus: 'CareerManage'
     },
     message: {
       model: 'message',
