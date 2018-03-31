@@ -185,7 +185,6 @@ class TestResult extends React.Component {
     }
   }
   render() {
-    const { app, loading, dispatch } = this.props
     const { lists, HLD, listIndustry } = this.state
     return (
       <div className={style.report}>
