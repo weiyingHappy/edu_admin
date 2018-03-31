@@ -79,7 +79,7 @@ class TestResult extends React.Component {
     HLD: [],
     listIndustry: [],
     level: [1, 5],
-    stem: 0,
+    stem: '-1',
     lists: [],
     industry: '-1'
   }
@@ -143,7 +143,7 @@ class TestResult extends React.Component {
     const tindustry = type == 2 ? v : industry
     const tstem = type == 3 ? v : stem
     const list = (results.result || []).filter(item => {
-      if (item.stem == tstem &&
+      if ((tstem != '-1' ? item.stem == tstem : true) &&
         (item.edu_level > tlevel[0] || item.edu_level == tlevel[0]) && (item.edu_level < tlevel[1] || item.edu_level == tlevel[1]) &&
         (tindustry != '-1' ? item.industry_id == tindustry : true)) { return item }
     })
@@ -294,7 +294,7 @@ class TestResult extends React.Component {
                 <Slider range defaultValue={[1, 5]} max={5} min={1} style={{ width: '100px' }} onChange={this.levelChange} />
               </FormItem>
             </Col>
-            <Col span={12}>
+            <Col span={10}>
               <FormItem {...formItemLayout} label="所属行业">
                 <Select style={{ width: '200px' }} onChange={this.industryChange}>
                   <Option value={'-1'} key="-1">全部</Option>
@@ -302,9 +302,10 @@ class TestResult extends React.Component {
                 </Select>
               </FormItem>
             </Col>
-            <Col span={6}>
+            <Col span={8}>
               <FormItem {...formItemLayout} label="STEM">
-                <RadioGroup onChange={this.stemChange} defaultValue={'0'} >
+                <RadioGroup onChange={this.stemChange} defaultValue={'-1'} >
+                  <Radio value={'-1'}>全部</Radio>
                   <Radio value={'1'}>是</Radio>
                   <Radio value={'0'}>否</Radio>
                 </RadioGroup>

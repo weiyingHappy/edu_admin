@@ -28,16 +28,16 @@ function InlandSubjectDetail({ common, app, loading, history }) {
         </Row>
       </Mcard>
       <Mcard title="业务培养目标">
-        <p>业务培养目标：{detail.goal}</p>
+        <p>{detail.goal}</p>
       </Mcard>
       <Mcard title="毕业生应获得以下几方面的知识和能力">
-        <p>毕业生应获得以下几方面的知识和能力：{detail.ability}</p>
+        <p>{detail.ability}</p>
       </Mcard>
       <Mcard title="主要课程">
-        <p>主要课程：{detail.course}</p>
+        <p>{detail.course}</p>
       </Mcard>
       <Mcard title="主要实践性教学环节">
-        <p>主要实践性教学环节:{detail.practice}</p>
+        <p>{detail.practice}</p>
       </Mcard>
     </PageTitle>
   )
