@@ -27,10 +27,10 @@ function CareerList({ dispatch, history, common, app }) {
       title: '行业',
       dataIndex: 'industry',
     },
-    {
-      title: '职业评级',
-      dataIndex: 'persons',
-    },
+    // {
+    //   title: '职业评级',
+    //   dataIndex: 'persons',
+    // },
     {
       title: '操作',
       render(record) {
