@@ -1,10 +1,11 @@
 import React from 'react'
-import { Row, Col, Card, Button, message, Popconfirm, Progress } from 'antd'
+import { Row, Col, Card, Button, message, Popconfirm, Progress} from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
 import { AddResponClass, AddBuyInfo } from '../../components/ModalToast'
 import { covertUserType, covertBuyType, testType } from '../../utils/convert'
 import { apiPrefix } from '../../utils/utils'
+
 
 class UserDetail extends React.PureComponent {
 
