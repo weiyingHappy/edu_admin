@@ -44,6 +44,34 @@ export const testType = [
     name: '优势测评'
   },
 ]
+export const categoryType = [{ "name": "全部", "value": "-1" },{ "name": "工学", "value": "工学" }, { "name": "理学", "value": "理学" }, { "name": "农学", "value": "农学" }, { "name": "医学", "value": "医学" }, { "name": "教育学", "value": "教育学" }, { "name": "管理学", "value": "管理学" }, { "name": "经济学", "value": "经济学" }, { "name": "哲学", "value": "哲学" }, { "name": "文学", "value": "文学" }, { "name": "法学", "value": "法学" }, { "name": "历史学", "value": "历史学" }]
+export const levelType = [
+  {
+    value: '-1',
+    name: '全部'
+  },
+  {
+    value: '1',
+    name: '1'
+  },
+  {
+    value: '2',
+    name: '2'
+  },
+  {
+    value: '3',
+    name: '3'
+  },
+  {
+    value: '4',
+    name: '4'
+  },
+  {
+    value: '5',
+    name: '5'
+  },
+
+]
 export function covertBuyType(type) {
   switch (+type) {
     case 1:

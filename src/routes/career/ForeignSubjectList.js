@@ -5,7 +5,7 @@ import Mcard from '../../layouts/Mcard'
 import cs from '../app.less'
 import { DataTable, SearchInput, SAButton } from '../../components/General'
 
-function ClassList({ dispatch, history, common, app }) {
+function InlandSubjectList({ dispatch, history, common, app }) {
 
   if (!app.init) {
     return <Mcard><h1>404 Not Found</h1></Mcard>
@@ -13,24 +13,12 @@ function ClassList({ dispatch, history, common, app }) {
 
   const columns = [
     {
-      title: '班级名称',
-      dataIndex: 'class_name',
+      title: '学科名称',
+      dataIndex: 'name',
     },
     {
-      title: '学校',
-      dataIndex: 'school_name',
-    },
-    {
-      title: '班级编号',
+      title: '专业代码',
       dataIndex: 'id',
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'create_time',
-    },
-    {
-      title: '班级人数',
-      dataIndex: 'class_person',
     },
     {
       title: '操作',
@@ -52,20 +40,17 @@ function ClassList({ dispatch, history, common, app }) {
         <Row>
           <Col span={12}>
             <SearchInput
-              lable="班级名称"
-              value={search.class_name}
-              bindName="class_name"
+              lable="学科名称"
+              value={search.name}
+              bindName="name"
             />
-
-
           </Col>
           <Col span={12}>
             <SearchInput
-              lable="班级编号"
-              value={search.class_id}
-              bindName="class_id"
+              lable="专业代码"
+              value={search.id}
+              bindName="id"
             />
-
             <SAButton
               dispatch={dispatch}
               model={app.router.codeModel}
@@ -86,4 +71,4 @@ function mapStateToProps({ app, common }) {
   return { common, app }
 }
 
-export default connect(mapStateToProps)(ClassList)
+export default connect(mapStateToProps)(InlandSubjectList)

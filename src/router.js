@@ -27,9 +27,14 @@ function RouterConfig({ history, app }) {
       component: () => import('./routes/admin/My'),
     },
     {
-      path: '/testresult/:type/:uid',
+      path: '/careeresult/:type/:uid',
       models: () => [],
-      component: () => import('./routes/admin/TestResult'),
+      component: () => import('./routes/admin/CareeResult'),
+    },
+    {
+      path: '/viaresult/:type/:uid',
+      models: () => [],
+      component: () => import('./routes/admin/ViaResult'),
     },
   ]
 

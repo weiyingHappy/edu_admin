@@ -56,6 +56,13 @@ module.exports = {
       lazy: true,
       cus: 'CareerManage'
     },
+    foreignSubject: {
+      model: 'foreignSubject',
+      folder: 'career',
+      noadd: true,
+      lazy: true,
+      cus: 'CareerManage'
+    },
     message: {
       model: 'message',
       noadd: true,
