@@ -102,8 +102,8 @@ class CareerList extends React.PureComponent {
               <SearchSelect
                 lable="行业"
                 options={this.state.industryList}
-                value={search.industry}
-                bindName="industry"
+                value={search.industry_id}
+                bindName="industry_id"
               />
               <SAButton
                 dispatch={dispatch}
