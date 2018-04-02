@@ -23,7 +23,7 @@ class EditableInput extends React.PureComponent {
       this.setState({ edit: false })
       return
     }
-    const { dispatch, bindName, router } = this.props
+    const { dispatch, bindName, router, cb } = this.props
     const payload = {}
     payload[bindName] = this.state.nowValue
     dispatch({
@@ -34,6 +34,7 @@ class EditableInput extends React.PureComponent {
         type: 0,
         cb: () => {
           this.setState({ edit: false, initValue: this.state.nowValue })
+          cb ? cb() : ''
         },
       },
     })

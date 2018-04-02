@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 import Mcard from '../../layouts/Mcard'
+import { categoryType } from '../../utils/convert'
 import cs from '../app.less'
-import { DataTable, SearchInput, SAButton } from '../../components/General'
+import { DataTable, SearchInput, SAButton, SearchSelect } from '../../components/General'
 
 function InlandSubjectList({ dispatch, history, common, app }) {
 
@@ -64,11 +65,12 @@ function InlandSubjectList({ dispatch, history, common, app }) {
               value={search.id}
               bindName="id"
             />
-             <SearchInput
-              lable="门类"
-              value={search.category}
-              bindName="category"
-            />
+            <SearchSelect
+                lable="门类"
+                options={categoryType}
+                value={search.category}
+                bindName="category"
+              />
             <SAButton
               dispatch={dispatch}
               model={app.router.codeModel}

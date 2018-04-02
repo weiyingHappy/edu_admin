@@ -37,9 +37,15 @@ module.exports = {
         },
         {
           id: "5_2",
-          name: '学科管理',
+          name: '国内学科管理',
           icon: 'book',
           route: '/inlandSubject/list/1'
+        },
+        {
+          id: "5_3",
+          name: '国外学科管理',
+          icon: 'book',
+          route: '/foreignSubject/list/1'
         }
       ]
     },

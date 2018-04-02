@@ -98,9 +98,10 @@ class UserDetail extends React.PureComponent {
     })
   }
 
-  lookReport = (e, uid) => {
+  lookReport = (type, uid) => {
+    const path = type == 1 ? 'careeresult/onlineCareer' : 'viaresult/onlineVia'
     let a = document.createElement('a')
-    a.setAttribute('href', `/edu_admin/#/testresult/${e}/${uid}`)
+    a.setAttribute('href', `/edu_admin/#/${path}/${uid}`)
     a.click()
 
   }
@@ -203,7 +204,7 @@ class UserDetail extends React.PureComponent {
                       <Button
                         type="primary"
                         style={{ marginRight: '6px' }}
-                        onClick={() => this.lookReport(item.type == 1 ? 'onlineCareer' : 'onlineVia', detail.userID)}
+                        onClick={() => this.lookReport(item.type, detail.userID)}
                         disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>
                         查看测评报告
                       </Button>

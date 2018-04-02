@@ -73,7 +73,7 @@ const hldConfig = {
 //     },
 //   });
 
-class TestResult extends React.Component {
+class CareeResult extends React.Component {
   state = {
     results: null,
     HLD: [],
@@ -372,4 +372,4 @@ function mapStateToProps({ loading, app }) {
   return { loading, app }
 }
 
-export default connect(mapStateToProps)(TestResult)
+export default connect(mapStateToProps)(CareeResult)

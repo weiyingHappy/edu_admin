@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 import { connect } from 'dva'
 import { Mcard, PageTitle, MySpin } from '../../layouts'
-import { SelfDataTable } from '../../components/General'
+import { SelfDataTable, EditableInput } from '../../components/General'
 import { apiPrefix } from '../../utils/utils'
 function ClassDetail({ common, app, loading, history }) {
 
@@ -13,7 +13,9 @@ function ClassDetail({ common, app, loading, history }) {
   if (loading.effects[`${app.router.codeModel}/query`]) {
     return <MySpin />
   }
-
+  const editCallback = () => {
+    history.push(`/${app.router.model}/detail/${common.detail.id}`)
+  }
   const { detail } = common
   const sColumns = [
     {
@@ -123,7 +125,7 @@ function ClassDetail({ common, app, loading, history }) {
     <PageTitle router={app.router} title="班级详情">
       <Mcard title="基本信息">
         <Row>
-          <Col span={8}>班级名称：{detail.class_name}</Col>
+          <EditableInput title="班级名称" bindName="class_name" value={detail.class_name} cb={editCallback} />
           <Col span={8}>班级编号：{detail.id}</Col>
           <Col span={8}>学校名称：{detail.school ? detail.school.school_name : ''}</Col>
           <Col span={8}>学校编码：{detail.school ? detail.school.school_code : ''}</Col>
