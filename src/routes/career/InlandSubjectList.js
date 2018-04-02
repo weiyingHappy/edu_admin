@@ -43,6 +43,7 @@ function InlandSubjectList({ dispatch, history, common, app }) {
     },
   ]
   const { search } = common
+
   return (
     <div>
       <Mcard>
