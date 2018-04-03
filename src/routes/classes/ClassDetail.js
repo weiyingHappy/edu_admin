@@ -22,12 +22,14 @@ class ClassDetail extends React.PureComponent {
     })
   }
   toAddStu = (e) => {
-
-    console.log('参数', e)
-
     const { dispatch, common, app, history } = this.props
     const { detail } = common
-    let msg = (!e.funcs || e.funcs.length < 1) ? '请确认购买项目' : !e.buy_type ? '请选择购买方式' : e.buy_type == 2 && !e.order_no ? '请填写订单号' : ''
+    let msg = (!e.name) ? '请填写学生姓名' :
+      (!e.phone) ? '请填写联系方式' :
+        (!e.funcs || e.funcs.length < 1) ? '请确认购买项目' :
+          !e.buy_type ? '请选择购买方式' :
+            e.buy_type == 2 && !e.order_no ? '请填写订单号' :
+              ''
     if (msg) {
       message.error(msg);
       return;
