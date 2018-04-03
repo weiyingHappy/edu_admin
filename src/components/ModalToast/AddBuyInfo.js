@@ -10,13 +10,16 @@ class ChangeBuyType extends React.PureComponent {
   state = {
     funcs: null,
     buy_type: '',
-    order_no: ''
+    order_no: '',
+    name: '',
+    phone: ''
   }
   handleFuncChange = (e) => {
     this.setState({ funcs: e })
   }
   render() {
-    const { title, visible, onCreate, onCancel, userInfo, type = [] } = this.props
+    // 有addcontent,则是添加学生。没有则是添加购买信息
+    const { title, visible, onCreate, onCancel, userInfo, type = [], addContent } = this.props
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 16 },
@@ -37,17 +40,31 @@ class ChangeBuyType extends React.PureComponent {
             this.setState({
               funcs: null,
               buy_type: '',
-              order_no: ''
+              order_no: '',
+              name: ''
             })
             onCancel()
           }}
         >
+          {addContent ? <FormItem {...formItemLayout} label="学生姓名"
+          >
+            <Input style={{ width: '200px' }} onChange={(e) => {
+              this.setState({ 'name': e.target.value })
+            }} />
+          </FormItem> : ''}
+          {addContent ? <FormItem {...formItemLayout} label="联系方式"
+          >
+            <Input style={{ width: '200px' }} onChange={(e) => {
+              this.setState({ 'phone': e.target.value })
+            }} />
+          </FormItem> : ''}
           <FormItem {...formItemLayout} label="确认购买项目：">
             <PurchasesAdd type={type} onChange={this.handleFuncChange} />
           </FormItem>
-          <FormItem {...formItemLayout} label="确认购买信息：">
+          {userInfo ? <FormItem {...formItemLayout} label="确认购买信息：">
             <span>{userInfo.name}</span>&nbsp;&nbsp;<span>{userInfo.userID}</span>
-          </FormItem>
+          </FormItem> : ''}
+
           <FormItem {...formItemLayout} label="购买方式：">
             <Select
               onChange={(value) => {
