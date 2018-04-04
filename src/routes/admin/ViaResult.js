@@ -1,20 +1,6 @@
 import React from 'react'
 import { connect } from 'dva'
-import { message, Progress, Table, Icon, Slider, Select, Radio, Form, Row, Col } from 'antd'
-import { renderList } from '../../utils/tool'
 import style from './index.less'
-
-const Option = Select.Option
-const FormItem = Form.Item
-const RadioGroup = Radio.Group;
-const formItemLayout = {
-  labelCol: { span: 24 },
-  wrapperCol: { span: 24 },
-  hasFeedback: true,
-}
-
-
-
 
 class CareeResult extends React.Component {
   state = {
@@ -50,6 +36,7 @@ class CareeResult extends React.Component {
           <h1 className={style.title}>
             <span>优势测评结果</span>
           </h1>
+
         </div>
       </div>
     )
