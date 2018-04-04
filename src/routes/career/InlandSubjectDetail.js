@@ -21,10 +21,9 @@ function InlandSubjectDetail({ common, app, loading, history }) {
           <Col span={8}>学科名称：{detail.name}</Col>
           <Col span={8}>专业代码：{detail.code}</Col>
           <Col span={8}>学科编号：{detail.id}</Col>
-          <Col span={8}>修业年限：{detail.school_year}</Col>
-          <Col span={8}>授予学士：{detail.school_year}</Col>
+          <Col span={8}>修业年限：{detail.school_year ? detail.school_year.split('：')[1] : ''}</Col>
+          <Col span={8}>授予学士：{detail.degree ? detail.degree.split('：')[1] : ''}</Col>
           <Col span={8}>门类：{detail.category}</Col>
-          <Col span={8}>专业名称：{detail.code}</Col>
         </Row>
       </Mcard>
       <Mcard title="业务培养目标">
