@@ -23,7 +23,8 @@ function ForeignSubjectDetail({ common, app, loading, history }) {
         </Row>
       </Mcard>
       <Mcard title="学科介绍">
-        <p>{detail.intro}</p>
+        <div dangerouslySetInnerHTML={{ __html: detail.intro ? detail.intro : '<p>暂无</p>' }}></div>
+        {/* <p>{detail.intro}</p> */}
       </Mcard>
       <Mcard title="推荐">
         {detail.recommend ? (detail.recommend || []).map(item => (<p>{item}</p>)) : '暂无'}
