@@ -5,13 +5,13 @@ module.exports = {
   productionDomain: '47.100.46.51', // 生产环境域名
   testingDomain: 'lianwuyun.cn', // 测试环境域名
   apiPrefix: { // 不同环境api地址前缀
-    production: '47.100.46.51/api/',
+    production: 'http://47.100.46.51/api',
     testing: 'http://www.lianwuyun.cn/edu_api/api',
     development: 'http://www.lianwuyun.cn/edu_api/api',
     // development: 'http://127.0.0.1/edu/api/',
   },
   domain: { // 不同环境本项目访问地址
-    production: '47.100.46.51/edu_admin/',
+    production: 'http://47.100.46.51/edu_admin/',
     testing: 'http://lianwuyun.cn/edu_admin/',
     development: 'http://localhost:8000/',
   },
