@@ -133,9 +133,9 @@ class CareeResult extends React.Component {
   }
   stemChange = (e) => {
     this.setState({
-      stem: e.target.value
+      stem: e
     })
-    this.filteringItem(3, e.target.value)
+    this.filteringItem(3, e)
   }
   filteringItem = (type, v) => {
     const { level, stem, industry, results } = this.state
@@ -304,11 +304,16 @@ class CareeResult extends React.Component {
             </Col>
             <Col span={8}>
               <FormItem {...formItemLayout} label="STEM">
-                <RadioGroup onChange={this.stemChange} defaultValue={'-1'} >
+                {/* <RadioGroup onChange={this.stemChange} defaultValue={'-1'} >
                   <Radio value={'-1'}>全部</Radio>
                   <Radio value={'1'}>是</Radio>
                   <Radio value={'0'}>否</Radio>
-                </RadioGroup>
+                </RadioGroup> */}
+                <Select onChange={this.stemChange} defaultValue={'-1'} style={{ width: '200px' }}>
+                  <Select.Option value={'-1'}>全部</Select.Option>
+                  <Select.Option value={'1'} key={'1'}>是</Select.Option>
+                  <Select.Option value={'0'} key={'0'}>否</Select.Option>
+                </Select>
               </FormItem>
             </Col>
           </Row>
