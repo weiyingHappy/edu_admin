@@ -1,10 +1,11 @@
 //新增购买信息
 import React from 'react'
-import { Form, Input, Modal, Select } from 'antd'
+import { Form, Input, Modal, Select, Radio } from 'antd'
 import { connect } from 'dva'
 import { PurchasesAdd } from '../../components/Special'
 import { buyType } from '../../utils/convert'
 const FormItem = Form.Item
+const RadioGroup = Radio.Group
 const Option = Select.Option
 class ChangeBuyType extends React.PureComponent {
   state = {
@@ -57,6 +58,13 @@ class ChangeBuyType extends React.PureComponent {
             <Input style={{ width: '200px' }} onChange={(e) => {
               this.setState({ 'phone': e.target.value })
             }} />
+          </FormItem> : ''}
+          {addContent ? <FormItem {...formItemLayout} label="联系方式"
+          >
+            <RadioGroup onChange={(e) => { this.setState({ 'sex': e.target.value }) }} >
+              <Radio value={1}>男</Radio>
+              <Radio value={2}>女</Radio>
+            </RadioGroup>
           </FormItem> : ''}
           <FormItem {...formItemLayout} label="确认购买项目：">
             <PurchasesAdd type={type} onChange={this.handleFuncChange} />
