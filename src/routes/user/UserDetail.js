@@ -205,7 +205,8 @@ class UserDetail extends React.PureComponent {
                         type="primary"
                         style={{ marginRight: '6px' }}
                         onClick={() => this.lookReport(item.type, detail.userID)}
-                        disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}>
+                        disabled={(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? false : true}
+                        >
                         查看测评报告
                       </Button>
                       {(item.count / (item.type == 2 ? (detail.roles_id == 2 ? 100 : 120) : 180)) == 1 ? <a target="_blank" href={`${apiPrefix()}/Admin/DownManage/downloadProfile/${app.user.token}/${detail.userID}/${item.type == 2 ? 'via' : 'career'}`}>下载报告</a> : <span>测评未完成</span>}
